@@ -1,0 +1,17 @@
+<div id="categories" class="s_nav">
+<ul class="links-menu">
+    <li>
+        <a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'link.pk' %}
+                active
+                {% endif %}">Главная</a>
+{% for link in links_menu %}
+        <a href="{% url 'products:category' link.pk %}"
+           class="{% if request.resolver_match.url_name == 'link.pk' %}
+                active
+                {% endif %}">
+            {{ link.name }}
+        </a>
+    {% endfor %}
+    </li>
+</ul>
+</div>

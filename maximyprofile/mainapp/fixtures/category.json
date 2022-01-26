@@ -1,0 +1,26 @@
+[
+  {
+    "model": "mainapp.productcategory",
+    "pk": 1,
+    "fields": {
+      "name": "Electronics",
+      "description": ""
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 2,
+    "fields": {
+      "name": "Computers",
+      "description": ""
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 3,
+    "fields": {
+      "name": "Smartphones",
+      "description": ""
+    }
+  }
+]

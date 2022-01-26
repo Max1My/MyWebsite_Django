@@ -1,0 +1,24 @@
+{% for item in basket_items %}
+          <tr>
+            <td valign="middle"><input type="checkbox" /></td>
+            <td valign="middle"><a href="#"><img src="/media/{{ item.product.image }}" width="60" height="60" alt="{{ item.product.short_desc }}" /></a></td>
+            <td valign="middle"><a href="#"><strong>{{ item.product.name }}</strong></a></td>
+            <td valign="middle">{{ item.product.category.name }}</td>
+            <td valign="middle"><input name="{{ item.id }}" type="number" class="form-control"
+                                       value="{{ item.quantity }}" min="1"></td>
+            <td valign="middle">{{ item.product.price }}<span class="s_currency s_after"> rub</span></td>
+            <td valign="middle">{{ item.product_cost }}<span class="s_currency s_after"> rub</span></td>
+            <td valign="middle"><button class="s_button_1 s_main_color_bgr"><a href="{% url 'basket:remove' item.pk %}" class="">Удалить</a></button>
+            </td>
+          </tr>
+{% endfor %}
+</table>
+        <br/>
+{% if basket_items %}
+    <div class="basket_summary">
+        <p class="s_total"><strong>В корзине:</strong> {{ basket_items.0.total_quantity }}<span class="s_currency s_after"> товаров </span></p>
+        <p class="s_total s_secondary_color last"><strong>Общей стоимостью:</strong>{{ basket_items.0.total_cost }}<span class="s_currency s_after"> rub</span></p>
+    </div>
+{% endif %}
+        <div class="clear"></div>
+        <br />

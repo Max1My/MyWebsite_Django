@@ -1,0 +1,58 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <div id="content" class="container_16">
+      {% if form.non_field_errors  or messages %}
+              <div class="alert {% if messages %} alert-success {% else %} alert-warning {% endif %}alert-dismissible fade show" role="alert"
+                 style="margin-top: 50px;">
+
+                {% if messages %}
+                    {% for mes in messages %}
+                        {{ mes }}
+                    {% endfor %}
+                {% else %}
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                {% endif %}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+    <div id="login_page" class="grid_16">
+        <div class="grid_8 omega">
+        <h2 class="s_title_1"><span class="s_secondary_color">Returning</span> Customer</h2>
+
+        <div class="clear"></div>
+        <form action="{% url 'authapp:login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="small mb-1" for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="{{ form.password.id_for_label }}">Пароль</label>
+                        {{ form.password }}
+                    </div>
+                    {#                    {{ form.as_p }}#}
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <a class="small" href="#">Забыли пароль?</a>
+                        <input class="btn btn-primary" type="submit" value="Авторизоваться">
+                    </div>
+        </form>
+            <div class="card-footer text-center">
+                <div class="small"><a href="{% url 'authapp:register' %}">Нужен аккаунт? Зарегистрируйся!</a></div>
+            </div>
+            <button class="btn btn-round form-control">
+    <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/">
+     Вход через ВКонтакте
+    </a>
+</button>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

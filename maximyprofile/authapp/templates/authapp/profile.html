@@ -1,0 +1,95 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div id="content" class="container_16">
+      {% if  messages %}
+                    <div class="alert {% if messages.level == 20 %} alert-success {% else %} alert-warning {% endif %}alert-dismissible fade show"
+                         role="alert"
+                         style="margin-top: 50px;">
+                        {% if messages %}
+                            {% for mes in messages %}
+                                {{ mes }}
+                            {% endfor %}
+                        {% endif %}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endif %}
+    <div id="login_page" class="grid_16">
+        <div class="grid_8 omega">
+        <h2 class="s_title_1"><span class="s_secondary_color">Profile</span> Customer</h2>
+        <div class="clear"></div>
+  <form action="{% url 'authapp:profile' %} " method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-row">
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="small mb-1" for="{{ form.first_name.id_for_label }}">Имя</label>
+                                {{ form.first_name }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="small mb-1" for="{{ user.avatar }}"></label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="small mb-1" for="{{ form.last_name.id_for_label }}">Фамилия</label>
+                                {{ form.last_name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row mb-2">
+                        <div class="col-lg-12">
+                            <div class="custom-file">
+                                {{ form.image }}
+                                <img src="{{ user.avatar }}">
+                                <label class="custom-file-label" for="{{ form.image.id_for_label }}">Выберите
+                                    изображение</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <label class="small mb-1" for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                            {{ form.username }}
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="small mb-1" for="{{ form.email.id_for_label }}">Адрес электронной
+                                почты</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="small mb-1" for="{{ profile.langs.id_for_label }}">Язык
+                                </label>
+                            {{ profile.langs }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <label class="small mb-1" for="{{ form.age.id_for_label }}">Возраст
+                            </label>
+                            {{ form.age }}
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="small mb-1" for="{{ profile.gender.if_for_label }}">Пол</label>
+                            {{ profile.gender }}
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-12" style="margin-top: 33px;">
+                            <input class="btn btn-info btn-block" type="submit" value="Сохранить">
+                        </div>
+                    </div>
+                </form>
+  <button class="btn btn-round form-control last">
+    <a href="{% url 'index' %}" class="">
+      На главную
+    </a>
+  </button>
+    </div>
+  </div>
+{% endblock %}
