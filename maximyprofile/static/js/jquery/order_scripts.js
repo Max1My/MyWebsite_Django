@@ -71,7 +71,7 @@ window.onload = function () {
 
         $('.order_total_quantity').html(order_total_quantity.toString());
         $('.order_total_cost').html(order_total_cost.toString()+ ',00');
-//        $('.orderitems-' + orderitem_num + '-price').html(orderitem_price * order_item_quantity.toString()+ ',00 руб.');
+        $('.orderitems-' + orderitem_num + '-price').html(orderitem_price * order_item_quantity.toString()+ ',00 руб.');
 
 
     }
