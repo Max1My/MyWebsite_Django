@@ -162,11 +162,11 @@ LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_ERROR_URL = '/'
 
-DOMAIN_NAME = 'http://localhost:8000'
+DOMAIN_NAME = 'http://http://89.108.81.6/'
 
 
 
-DOMAIN_NAME = 'http://localhost:8000'
+DOMAIN_NAME = 'http://http://89.108.81.6/'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 25
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')

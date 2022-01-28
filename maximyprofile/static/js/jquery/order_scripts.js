@@ -47,6 +47,8 @@ window.onload = function () {
         }
     )
 
+
+
 // 2 метод
 
     $('.order_form').on('click','input[type=checkbox]',function(){
