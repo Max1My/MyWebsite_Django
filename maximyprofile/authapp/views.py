@@ -25,32 +25,35 @@ class LoginListView(LoginView,BaseClassContextMixin):
     title = 'Авторизация'
     success_url = reverse_lazy('auth:login')
 
-class RegisterListView(FormView,BaseClassContextMixin):
+class RegisterListView(FormView, BaseClassContextMixin):
     model = ShopUser
     template_name = 'authapp/register.html'
     form_class = ShopUserRegisterForm
+    title = 'GeekShop - Регистрация'
+    success_url = reverse_lazy('auth:login')
 
-    def post(self,request,*args,**kwargs):
+    def post(self, request, *args, **kwargs):
+
         form = self.form_class(data=request.POST)
         if form.is_valid():
             user = form.save()
             if self.send_verify_link(user):
-                messages.set_level(request,messages.SUCCESS)
-                messages.success(request,'Вы успешно зарегистрировались!')
+                messages.set_level(request, messages.SUCCESS)
+                messages.success(request, 'Вы успешно зарегистрировались!')
             return HttpResponseRedirect(reverse('authapp:login'))
         else:
-            messages.set_level(request,messages.ERROR)
-            messages.error(request,form.errors)
-        return render(request,self.template_name,{'form':form})
+            messages.set_level(request, messages.ERROR)
+            messages.error(request, form.errors)
+        return render(request, self.template_name, {'form': form})
 
     @staticmethod
     def send_verify_link(user):
-        verify_link = reverse('authapp:verify',args=[user.email,user.activation_key])
+        verify_link = reverse('authapp:verify', args=[user.email, user.activation_key])
         subject = f'Для активации учетной записи {user.username} пройдите по ссылке'
         message = f'Для подтверждения учетной записи {user.username} на портале \n {settings.DOMAIN_NAME}{verify_link}'
-        return send_mail(subject,message,settings.EMAIL_HOST_USER[user.email],fail_silently=False)
+        return send_mail(subject, message, settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
 
-    def verify(self,email,activate_key):
+    def verify(self, email, activate_key):
         try:
             user = ShopUser.objects.get(email=email)
             if user and user.activation_key == activate_key and not user.is_activation_key_expires():
@@ -58,8 +61,8 @@ class RegisterListView(FormView,BaseClassContextMixin):
                 user.activation_key_expires = None
                 user.is_active = True
                 user.save()
-                auth.login(self,user)
-            return render(self,'authapp/verification.html')
+                auth.login(self, user)
+            return render(self, 'authapp/verification.html')
         except Exception as e:
             return HttpResponseRedirect(reverse('index'))
 
