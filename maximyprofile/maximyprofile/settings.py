@@ -1,3 +1,4 @@
+
 """
 Django settings for maximyprofile project.
 
@@ -164,10 +165,9 @@ LOGIN_ERROR_URL = '/'
 
 DOMAIN_NAME = 'http://http://89.108.81.6/'
 
-with open('maximyprofiile/mail.json','r') as f:
+with open('maximyprofile/mail.json', 'r') as f:
     MAIL = json.load(f)
 
-DOMAIN_NAME = 'http://http://89.108.81.6/'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 25
 EMAIL_HOST_USER = MAIL['EMAIL_HOST_USER']
