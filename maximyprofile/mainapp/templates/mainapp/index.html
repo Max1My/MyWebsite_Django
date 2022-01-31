@@ -13,7 +13,7 @@
             <div class="s_rating_holder">
               <p class="s_rating s_rating_big s_rating_5"> <span style="width: 60%;" class="s_percent"></span> </p>
               <span class="s_average">3 out of 5</span> </div>
-            <p class="s_desc"> {{ hot_product.description }} </p>
+            <p class="s_desc"> {{ hot_product.description }}</p>
             <div class="s_price_holder">
               <p class="s_price"> <span class="s_currency s_before">₽</span>{{ hot_product.price }} </p>
             </div>
@@ -42,9 +42,8 @@
   <div id="content" class="container_12">
 
     <div id="welcome" class="grid_12">
-      <h2>Welcome to Shoppica store</h2>
-      <p> <a href="">Shoppica</a> is a stylish premium OpenCart theme (currently supported versions are 1.4.9.3/1.4.9.4). The clean and modern design allows you to use the theme for every kind of online shop: clothes, accessories, gifts, electronics, furniture, health and cosmetics store and so on.</p>
-      <p> One of the main features is to choose different types of slideshows for every category, so you can personalise every part of your store. Shoppica allows you to customize product listing size, column position and layout type, giving you the power to easy adapt the theme to your produc or service. With the color themer tool you can change site&#39;s elements and make your store unique and stand out of the crowd.</p>
+      <h2>Welcome to MaxiMy store</h2>
+      <p> Hello, my name is <a href="https://github.com/Max1My">Maxim</a>. I'm the developer of my learning project in Django. As you can see, the project is still raw. Every day I upgrade it. I update it every day. The final version will be when my site gets a domain.</p>
     </div>
 
     <div class="clear"></div>
@@ -53,77 +52,26 @@
       <h2 class="s_title_1"><span class="s_main_color">Specials</span> Products</h2>
       <div class="clear"></div>
       <div class="s_listing s_grid_view clearfix">
-        <div class="s_item grid_2"> <a class="s_thumb" href=""><img src="{% static 'images/dummy/pic_5.jpg' %}" title="Armani Acqua di Gioia" alt="Armani Acqua di Gioia" /></a>
-          <h3><a href="">Armani Acqua di Gioia</a></h3>
-          <p class="s_model">Product 4</p>
-          <p class="s_price s_promo_price"><span class="s_old_price"><span class="s_currency s_before">$</span>1,538.69</span><span class="s_currency s_before">$</span>1,346.35</p>
-          <a class="s_button_add_to_cart" href=""><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
+        {% for spec_product in same_products %}
+        <div class="s_item grid_2"> <a class="s_thumb" href="{% url 'product:product' spec_product.pk %}"><img src="/media/{{ spec_product.image }}" title="{{ spec_product.name }}" alt="{{ spec_product.short_desc }}" /></a>
+          <h3><a href="{% url 'product:product' spec_product.pk %}">{{ spec_product.name }}</a></h3>
+          <p class="s_model">{{ spec_product.name }}</p>
+          <p class="s_price s_promo_price"><span class="s_old_price"><span class="s_currency s_before">₽</span>1,538.69</span><span class="s_currency s_before">₽</span>{{ spec_product.price }}</p>
+          <a class="s_button_add_to_cart" href="{% url 'basket:add' spec_product.pk %}"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
         </div>
-        <div class="s_item grid_2"> <a class="s_thumb" href=""><img src="{% static 'images/dummy/pic_6.jpg' %}" title="Hennesy Paradis Extra" alt="Hennesy Paradis Extra" /></a>
-          <h3><a href="">Hennesy Paradis Extra</a></h3>
-          <p class="s_model">Product 19</p>
-          <p class="s_price s_promo_price"><span class="s_old_price"><span class="s_currency s_before">$</span>1,923.36</span><span class="s_currency s_before">$</span>1,731.02</p>
-          <a class="s_button_add_to_cart" href=""><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
-        </div>
-        <div class="s_item grid_2"> <a class="s_thumb" href=""><img src="{% static 'images/dummy/pic_7.jpg' %}" title="Leica M7" alt="Leica M7" /></a>
-          <h3><a href="">Leica M7</a></h3>
-          <p class="s_model">Product 4</p>
-          <p class="s_price s_promo_price"><span class="s_old_price"><span class="s_currency s_before">$</span>1,538.69</span><span class="s_currency s_before">$</span>1,346.35</p>
-          <a class="s_button_add_to_cart" href=""><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
-        </div>
-        <div class="s_item grid_2"> <a class="s_thumb" href=""><img src="{% static 'images/dummy/pic_8.jpg' %}" title="Sony VAIO" alt="Sony VAIO" /></a>
-          <h3><a href="">Sony VAIO</a></h3>
-          <p class="s_model">Product 19</p>
-          <p class="s_price s_promo_price"><span class="s_old_price"><span class="s_currency s_before">$</span>899.99</span><span class="s_currency s_before">$</span>1,731.02</p>
-          <p class="s_rating s_rating_5"><span style="width: 100%;" class="s_percent"></span></p>
-          <a class="s_button_add_to_cart" href=""><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
-        </div>
-        <div class="s_item grid_2"> <a class="s_thumb" href=""><img src="{% static 'images/dummy/pic_9.jpg' %}" title="Sony Cyber Shot S1000" alt="Sony Cyber Shot S1000" /></a>
-          <h3><a href="">Sony Cyber Shot S1000</a></h3>
-          <p class="s_model">Product 8</p>
-          <p class="s_price s_promo_price"><span class="s_old_price"><span class="s_currency s_before">$</span>99,999.99</span><span class="s_currency s_before">$</span>9,999.99</p>
-          <a class="s_button_add_to_cart" href=""><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
-        </div>
-        <div class="s_item grid_2"> <a class="s_thumb" href=""><img src="{% static 'images/dummy/pic_10.jpg' %}" title="Panasonic Lumix" alt="Panasonic Lumix" /></a>
-          <h3><a href="">Panasonic Lumix</a></h3>
-          <p class="s_model">Product 4</p>
-          <p class="s_price s_promo_price"><span class="s_old_price"><span class="s_currency s_before">$</span>1,923.36</span><span class="s_currency s_before">$</span>500.00</p>
-          <a class="s_button_add_to_cart" href=""><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
-        </div>
+        {% endfor %}
         <div class="clear"></div>
       </div>
     </div>
 
-    <div id="banners_1">
-      <div class="grid_3">
-        <a href="http://themeforest.net/item/shoppica-premium-open-cart-theme/235470?ref=ThemeBurn" target="_blank">
-          <img src="{% static 'images/dummy/banner_4.jpg' %}">
-        </a>
-      </div>
-      <div class="grid_3">
-        <a href="http://themeforest.net/item/shoppica-premium-open-cart-theme/235470?ref=ThemeBurn" target="_blank">
-          <img src="{% static 'images/dummy/banner_1.jpg' %}">
-        </a>
-      </div>
-      <div class="grid_3">
-        <a href="http://themeforest.net/item/shoppica-premium-open-cart-theme/235470?ref=ThemeBurn" target="_blank">
-          <img src="{% static 'images/dummy/banner_2.jpg' %}">
-        </a>
-      </div>
-      <div class="grid_3">
-        <a href="http://themeforest.net/item/shoppica-premium-open-cart-theme/235470?ref=ThemeBurn" target="_blank">
-          <img src="{% static 'images/dummy/banner_3.jpg' %}">
-        </a>
-      </div>
-      <div class="clear"></div>
-    </div>
+
 
     <div id="latest_home" class="grid_12">
       <h2 class="s_title_1"><span class="s_main_color">Latest</span> Products</h2>
       <div class="clear"></div>
       <div class="s_listing s_grid_view clearfix">
         {% for product in products %}
-  <div class="s_item grid_2"><a class="s_thumb" href=""><img src="/media/{{ product.image }}" alt="{{ product.short_desc }}" title="{{ product.name }}"/></a>
+  <div class="s_item grid_2"><a class="s_thumb" href="{% url 'product:product' product.pk %}"><img src="/media/{{ product.image }}" alt="{{ product.short_desc }}" title="{{ product.name }}"/></a>
     <a href="#">
       <div class="text">
         <p class="s_model">{{ product.name }}</p>
@@ -134,7 +82,6 @@
         <div class="clear"></div>
       </div>
     </div>
-
   </div>
   <!-- end of content -->
 {% endblock %}
