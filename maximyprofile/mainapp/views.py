@@ -27,11 +27,11 @@ def get_basket(user):
 def get_hot_products():
     products = Product.objects.all()
 
-    return random.sample(list(products), 1)[0]
+    return random.sample(list(products), 6)[0]
 
 
 def get_same_products(hot_product):
-    same_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)[:3]
+    same_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)[:6]
     return same_products
 
 
@@ -43,12 +43,14 @@ def main(request):
     ]
     hot_product = get_hot_products()
     same_products = get_same_products(hot_product)
+    products = Product.objects.all().order_by('-id')[:6]
 
     content = {
         "title": 'Магазин',
         'menu': menu,
         'hot_product': hot_product,
         "same_products": same_products,
+        "products" : products,
     }
     return render(request, 'mainapp/index.html', content)
 
