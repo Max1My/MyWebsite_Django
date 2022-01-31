@@ -11,7 +11,7 @@
 
     <div id="product" class="grid_12">
       <div id="product_images" class="grid_6 alpha">
-      	<a id="product_image_preview" rel="prettyPhoto[gallery]" href="{{ object.image|media_folder_products }}"><img id="image" src="{{ object.image|media_folder_products }}" title="Leica M7" alt="Leica M7" style="width:300px; height:300px;" /></a>
+      	<a id="product_image_preview" rel="prettyPhoto[gallery]" href="/media/{{ product.image }}"><img id="image" src="/media/{{ product.image }}" title="Leica M7" alt="Leica M7" style="width:300px; height:300px;" /></a>
       </div>
       <div id="product_info" class="grid_6 omega">
         <p class="s_price s_promo_price"><span class="s_old_price">940.00<span class="s_currency s_after"> eur</span></span> {{ product.price }}<span class="s_currency s_after"> rub</span></p>
