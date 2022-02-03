@@ -72,3 +72,17 @@ class ProductEditForm(forms.ModelForm):
 #         for field_name, field in self.fields.items():
 #             field.widget.attrs['class'] = 'form-control'
 #             field.help_text = ''
+class ProductCategoryUpdateFormAdmin(forms.ModelForm):
+    # name = forms.CharField(widget=forms.TextInput())
+    # description = forms.CharField(widget=forms.TextInput(), required=False)
+    # # is_active = forms.BooleanField(widget=forms.CheckboxInput())
+
+
+    class Meta:
+        model = ProductCategory
+        fields = ('name', 'description')
+
+    def __init__(self, *args, **kwargs):
+        super(ProductCategoryUpdateFormAdmin, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control py-4'

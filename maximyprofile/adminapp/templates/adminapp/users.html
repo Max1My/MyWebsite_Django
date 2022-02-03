@@ -27,28 +27,25 @@
                                 <tbody>
                                 {% for user in object_list %}
                                     <tr>
-                                        <td valign="middle"><a href="{% url 'admin:admin_users_update' user.id %}"
+                                        <td valign="middle"><a href="{% url 'adminapp:users_update' user.id %}"
                                                style="color: dodgerblue">{{ user.username }}</a></td>
                                         <td valign="middle">{{ user.first_name }}</td>
                                         <td valign="middle">{{ user.last_name }}</td>
                                         <td valign="middle">{{ user.email }}</td>
-                                        <td class="text-center">
+                                        <td class="middle">
                                             {% if user.is_staff %}
-                                                <i class="fas fa-check-circle"></i>
+                                                <i class="close"></i>
                                             {% else %}
-                                                <i class="fas fa-times-circle"></i>
+                                                <i class="close"></i>
                                             {% endif %}
 
                                         </td>
 
 
                                         <td class="text-center">
-
-                                            {% if user.is_active %}
-                                                <i class="fas fa-check-circle"></i>
-                                            {% else %}
-                                                <i class="fas fa-times-circle"></i>
-                                            {% endif %}
+                                                <a href="{% url 'adminapp:users_delete' user.id %}">
+                                                                удалить
+                                                </a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -57,7 +54,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="{% url 'admin:user_create' %}">
+                        <a href="{% url 'adminapp:user_create' %}">
                             <button class="btn btn-success">Создать пользователя</button>
                         </a>
                     </div>
