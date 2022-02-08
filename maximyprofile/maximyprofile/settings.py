@@ -1,4 +1,3 @@
-
 """
 Django settings for maximyprofile project.
 
@@ -12,26 +11,24 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os,json
+import os, json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 from dotenv import load_dotenv
+
 load_dotenv(BASE_DIR / '.ENV')
 SECRET_KEY = 'django-insecure-s@iw$%^6xz79(5bp#d=@07517-oy21o-i!@l8kvw2dtjqm+%om'
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -50,7 +47,7 @@ INSTALLED_APPS = [
     'ordersapp',
     'debug_toolbar',
     'template_profiler_panel',
-
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -64,33 +61,16 @@ MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 
-
 ]
 
 if DEBUG:
-   def show_toolbar(request):
-       return True
+    def show_toolbar(request):
+        return True
 
-   DEBUG_TOOLBAR_CONFIG = {
-       'SHOW_TOOLBAR_CALLBACK': show_toolbar,
-   }
 
-   DEBUG_TOOLBAR_PANELS = [
-       'debug_toolbar.panels.versions.VersionsPanel',
-       'debug_toolbar.panels.timer.TimerPanel',
-       'debug_toolbar.panels.settings.SettingsPanel',
-       'debug_toolbar.panels.headers.HeadersPanel',
-       'debug_toolbar.panels.request.RequestPanel',
-       'debug_toolbar.panels.sql.SQLPanel',
-       'debug_toolbar.panels.templates.TemplatesPanel',
-       'debug_toolbar.panels.staticfiles.StaticFilesPanel',
-       'debug_toolbar.panels.cache.CachePanel',
-       'debug_toolbar.panels.signals.SignalsPanel',
-       'debug_toolbar.panels.logging.LoggingPanel',
-       'debug_toolbar.panels.redirects.RedirectsPanel',
-       'debug_toolbar.panels.profiling.ProfilingPanel',
-       'template_profiler_panel.panels.template.TemplateProfilerPanel',
-   ]
+    DEBUG_TOOLBAR_CONFIG = {
+        'SHOW_TOOLBAR_CALLBACK': show_toolbar,
+    }
 
 ROOT_URLCONF = 'maximyprofile.urls'
 
@@ -115,26 +95,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'maximyprofile.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-#
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'maximyprofile',
-#         'USER': 'postgres',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
 
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'maximyprofile',
+        'USER': 'postgres',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -154,7 +131,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -168,16 +144,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, "static"),
-# )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -228,7 +202,6 @@ SOCIAL_AUTH_VK_OAUTH2_SECRET = VK['SOCIAL_AUTH_VK_OAUTH2_SECRET']
 SOCIAL_AUTH_VK_OAUTH2_API_VERSION = '5.131'
 SOCIAL_AUTH_VK_OAUTH2_IGNORE_DEFAULT_SCOPE = True
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
-
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
