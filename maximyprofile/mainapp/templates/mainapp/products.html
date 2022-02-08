@@ -37,6 +37,7 @@
             <p class="s_model">{{ product.category.name }}</p>
             <p class="s_price s_promo_price"><span class="s_old_price"><span class="s_currency s_before">£</span>940.00</span> <span class="s_currency s_before"></span>{{ product.price }}</p>
             <p class="s_description">{{ product.description }}</p>
+            <p class="s_description">{{ product.category.name }}</p>
             <a class="s_button_add_to_cart" href="{% url 'basket:add' product.pk %}"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
           </div>
         </div>
