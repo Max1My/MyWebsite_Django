@@ -17,11 +17,11 @@ def basket(request):
 def basket_add(request,pk=None):
     if 'login' in request.META.get('HTTP_REFERER'):
         return HttpResponseRedirect(reverse('products:product',args=[pk]))
-    product = get_object_or_404(Product, pk=pk)
+    product = get_object_or_404(Product, pk=pk).select_related()
     basket = Basket.objects.filter(user=request.user, product=product).first()
 
     if not basket:
-        basket = Basket(user=request.user, product=product)
+        basket = Basket(user=request.user, product=product).select_related()
 
     basket.quantity += 1
     basket.save()
@@ -30,21 +30,21 @@ def basket_add(request,pk=None):
 
 @login_required
 def basket_remove(request,pk):
-    basket_record = get_object_or_404(Basket,pk=pk)
+    basket_record = get_object_or_404(Basket,pk=pk).select_related()
     basket_record.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 @login_required
 def basket_edit(request,id_basket,quantity):
     if request.is_ajax():
-        basket = Basket.objects.get(id=id_basket)
+        basket = Basket.objects.get(id=id_basket).select_related()
         if quantity > 0:
             basket.quantity = quantity
             basket.save()
         else:
             basket.delete()
 
-        baskets = Basket.objects.filter(user=request.user)
+        baskets = Basket.objects.filter(user=request.user).select_related()
         context = {'baskets': baskets}
         result = render_to_string('basketapp/basket.html', context)
         test = JsonResponse({'result': result})
