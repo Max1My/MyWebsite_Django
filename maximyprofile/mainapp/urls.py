@@ -1,12 +1,25 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page
 
-import mainapp.views as mainapp
+from mainapp.views import products, product,products_ajax
 
 app_name = 'mainapp'
 
 urlpatterns = [
-   path('', mainapp.products, name='index'),
-   path('category/<int:pk>/', mainapp.products, name='category'),
-   path('category/<int:pk>/page/<int:page>/', mainapp.products, name='page'),
-   path('product/<int:pk>/',mainapp.product, name='product'),
+   path('', products, name='index'),
+   # path('category/<int:pk>/', products, name='category'),
+   path('category/<int:pk>/$', cache_page(3600)(products),name='category'),
+   path('category/<int:pk>/ajax/$',cache_page(3600)(products_ajax)),
+   path('category/<int:pk>/page/<int:page>/', products, name='page'),
+   path('category/<int:pk>/page/<int:page>/ajax/$',cache_page(3600)(products_ajax)),
+   path('product/<int:pk>/',product, name='product'),
 ]
+
+# urlpatterns = [
+#
+#     path('', products,name='index'),
+#     path('category/<int:id_category>/', products, name='category'),
+#     path('category/<int:id_category>/page/<int:page>/', products, name='page'),
+#     path('product/<int:pk>/', ProductDetail.as_view(), name='product'),
+#
+# ]
