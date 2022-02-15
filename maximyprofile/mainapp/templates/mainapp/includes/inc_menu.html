@@ -1,15 +1,7 @@
 <div id="categories" class="s_nav">
-<ul class="links-menu">
-    {% for link in menu %}
-    <li>
-        <a href="{{ link.href }}"
-           class="{% if request.resolver_match.view_name == link.href %}
-           active
-           {% endif %}">
-            {{ link.name }}
-        </a>
-    </li>
-    {% endfor %}
+    <ul>
+          <li id="menu_home"> <a href="{% url 'index' %}">Главная</a> </li>
+            <li> <a href="{% url 'products:index' %}">Продукты</a></li>
 {% if user.is_authenticated %}
 <li>
     <a href="{% url 'products:index' %}"
@@ -27,11 +19,11 @@
 {% endif %}
     {% if user.is_superuser %}
     <li>
-        <a href="{% url 'admin:users' %}">Админка</a>
+        <a href="{% url 'admins:users' %}">Админка</a>
     </li>
     {% endif %}
     {% if user.is_authenticated %}
-<li> <a href="">{{ user.user_name|default:'Пользователь' }}</a>
+<li> <a href="{% url 'auth:profile' %}">{{ user.user_name|default:'Пользователь' }}</a>
             <div class="s_submenu">
               <ul class="s_list_1 clearfix">
                 <li> <a href="{% url 'auth:profile' %}">Профиль</a></li>

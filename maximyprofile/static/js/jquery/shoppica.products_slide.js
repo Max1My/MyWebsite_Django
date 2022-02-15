@@ -1,4 +1,4 @@
-jQuery( function($) {
+;( function($) {
 
   var site_options = {
     'main_color'      : '#71b013',

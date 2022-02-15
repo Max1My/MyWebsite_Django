@@ -43,13 +43,13 @@ class UserDeleteView(DeleteView,BaseClassContextMixin,CustomDispatchMixin):
     model = ShopUser
     template_name = 'adminapp/user_delete.html'
     form_class = ShopUserAdminProfileForm
-    success_url = reverse_lazy('admin:users_delete')
+    success_url = reverse_lazy('admins:users_delete')
     title = 'Админка | Удалить пользователя'
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.object.delete()
-        return HttpResponseRedirect(reverse('admin:users'))
+        return HttpResponseRedirect(reverse('admins:users'))
 
 # Category
 class ProductCategoryListView(ListView,BaseClassContextMixin,CustomDispatchMixin):
@@ -65,7 +65,7 @@ class ProductCategoryListView(ListView,BaseClassContextMixin,CustomDispatchMixin
 class ProductCategoryCreateView(CreateView):
     model = ProductCategory
     template_name = 'adminapp/category_create.html'
-    success_url = reverse_lazy('admin:categories')
+    success_url = reverse_lazy('admins:categories')
     form_class = ProductCategoryUpdateFormAdmin
     title = 'Админка | Создание категории'
 
@@ -75,13 +75,13 @@ class ProductCategoryUpdateView(UpdateView):
     template_name = 'adminapp/category_update_delete.html'
     form_class = ProductCategoryUpdateFormAdmin
     title = 'Админка | Обновление категории'
-    success_url = reverse_lazy('admin:categories')
+    success_url = reverse_lazy('admins:categories')
 
 
 class ProductCategoryDeleteView(DeleteView,BaseClassContextMixin,CustomDispatchMixin):
     model = ProductCategory
     template_name = 'adminapp/category_update_delete.html'
-    success_url = reverse_lazy('admin:categories')
+    success_url = reverse_lazy('admins:categories')
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -102,7 +102,7 @@ class ProductListView(ListView):
 class ProductCreateView(CreateView):
     model = Product
     template_name = 'adminapp/product_update.html'
-    success_url = reverse_lazy('admin:products')
+    success_url = reverse_lazy('admins:products')
     fields = '__all__'
 
 
@@ -113,7 +113,7 @@ class ProductDetailView(DetailView):
 class ProductUpdateView(UpdateView):
     model = Product
     template_name = 'adminapp/product_update.html'
-    success_url = reverse_lazy('admin:products')
+    success_url = reverse_lazy('admins:products')
     fields = '__all__'
 
     def get_context_data(self, **kwargs):
@@ -125,7 +125,7 @@ class ProductUpdateView(UpdateView):
 class ProductDeleteView(DeleteView):
     model = Product
     template_name = 'adminapp/product_delete.html'
-    success_url = reverse_lazy('admin:products')
+    success_url = reverse_lazy('admins:products')
     fields = '__all__'
 
     def delete(self, request, *args, **kwargs):

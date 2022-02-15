@@ -63,12 +63,32 @@ def main(request):
         'hot_product': hot_product,
         "same_products": same_products,
         "products" : products,
+        'links_menu':ProductCategory.objects.all()
     }
     return render(request, 'mainapp/index.html', content)
 
 def computers(request):
 
     return render(request,'mainapp/computers.html')
+
+def contacts(request):
+    title = 'Контакты'
+    links_menu = get_links_menu()
+    hot_product = get_hot_product()
+    same_products = get_same_products(hot_product)
+
+    content = {
+        "title": title,
+        'hot_product': hot_product,
+        "same_products": same_products,
+        "menu": menu,
+    }
+
+    return render(request,'mainapp/contacts.html',content)
+
+def sitemap(request):
+
+    return render(request,'mainapp/sitemap.html')
 
 def get_links_menu():
    if settings.LOW_CACHE:

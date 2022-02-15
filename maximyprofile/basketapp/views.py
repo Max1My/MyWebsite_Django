@@ -1,3 +1,4 @@
+from django.db.models import F,Q
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from basketapp.models import Basket
 from mainapp.models import Product
@@ -14,18 +15,16 @@ def basket(request):
     return render(request, 'basketapp/basket.html',content)
 
 @login_required
-def basket_add(request,pk=None):
-    if 'login' in request.META.get('HTTP_REFERER'):
-        return HttpResponseRedirect(reverse('products:product',args=[pk]))
-    product = get_object_or_404(Product, pk=pk)
-    basket = Basket.objects.filter(user=request.user, product=product).first()
-
-    if not basket:
-        basket = Basket(user=request.user, product=product)
-
-    basket.quantity += 1
-    basket.save()
-
+def basket_add(request,pk):
+    user_select = request.user
+    product = Product.objects.get(id=pk)
+    baskets = Basket.objects.filter(user=user_select,product=product)
+    if baskets:
+        basket = baskets.first()
+        basket.quantity +=1
+        basket.save()
+    else:
+        Basket.objects.create(user=user_select,product=product,quantity=1)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 @login_required

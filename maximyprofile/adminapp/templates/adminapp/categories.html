@@ -13,7 +13,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="s_table_1" width="100%" cellpadding="0" cellspacing="0" border="0">
                                 <thead>
                                 <tr>
                                     <th>Наименование</th>
@@ -23,21 +23,12 @@
                                     <th>Изменить</th>
                                 </tr>
                                 </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>Наименование</th>
-                                    <th>Описание</th>
-                                    <th>Активный</th>
-                                    <th>Удалить</th>
-                                    <th>Изменить</th>
-                                </tr>
-                                </tfoot>
                                 <tbody>
 
                                 {% for category in object_list %}
                                     <tr>
-                                        <td>{{ category.name }}</td>
-                                        <td>{{ category.description }}</td>
+                                        <td valign="middle">{{ category.name }}</td>
+                                        <td valign="middle">{{ category.description }}</td>
                                         <td class="text-center">
                                             {% if category.is_active %}
                                                 <i class="fas fa-check-circle"></i>
@@ -47,7 +38,7 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            <form action="{% url 'admin:category_delete' category.id %}" method="post">
+                                            <form action="{% url 'admins:category_delete' category.id %}" method="post">
                                                 {% csrf_token %}
                                                 <input class="btn btn-danger btn-block" type="submit" value="Удалить">
                                             </form>

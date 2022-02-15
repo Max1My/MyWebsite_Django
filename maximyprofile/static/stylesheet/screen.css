@@ -1427,6 +1427,17 @@ body.s_layout_fixed #wrapper {
 	background: url(../images/shoppica_logo.png) no-repeat center;
 }
 
+
+#site_logo_2 {
+	display: block;
+	float: left;
+	width: 220px;
+	height: 60px;
+	margin: 30px 10px 30px 0;
+	text-indent: -1000em;
+	background: url(../images/maximy_logo.png) no-repeat center;
+}
+
 #language_switcher,
 #currency_switcher
 {
@@ -2361,7 +2372,7 @@ body.s_layout_fixed #wrapper {
 .s_fax_32 {background-position: 0 -128px !important;}
 #twitter h2 {
   text-indent: 30px;
-  background: url(../images/i_twitter_24.png) no-repeat 0 8px;
+  background: url(static/images/i_github_24.png) no-repeat 0 8px;
 }
 #twitter li {
   margin-bottom: 18px;
@@ -2396,6 +2407,84 @@ body.s_layout_fixed #wrapper {
   content: "."
 }
 #twitter ul {
+  margin-bottom: -20px;
+}
+#github h2 {
+  text-indent: 30px;
+  background: url(../images/i_github_24.png) no-repeat 0 4px;
+}
+#github li {
+  margin-bottom: 18px;
+  padding-left: 30px;
+  background: url(../images/quotes.png) no-repeat 0 4px;
+}
+#github li a {
+  display: block;
+  font-style: normal;
+  font-size: 10px !important;
+  color: #bbb;
+}
+#github li span,
+#github li span *
+{
+  line-height: 16px;
+  font-size: 11px !important;
+  font-family: Georgia, Arial, Helvetica, sans-serif !important;
+  font-style: italic !important;
+  word-wrap: break-word;
+}
+#github li span * {
+  display: inline !important;
+  margin: 0;
+  padding: 0;
+}
+#github li span a {
+  color: #4cb1ca;
+}
+#github li span:after {
+  visibility: hidden;
+  content: "."
+}
+#github ul {
+  margin-bottom: -20px;
+}
+
+#telegram h2 {
+  text-indent: 30px;
+  background: url(../images/i_telegram_24.png) no-repeat 0 4px;
+}
+#telegram li {
+  margin-bottom: 18px;
+  padding-left: 30px;
+}
+#telegram li a {
+  display: block;
+  font-style: normal;
+  font-size: 10px !important;
+  color: #bbb;
+}
+#telegram li span,
+#telegram li span *
+{
+  line-height: 16px;
+  font-size: 11px !important;
+  font-family: Georgia, Arial, Helvetica, sans-serif !important;
+  font-style: italic !important;
+  word-wrap: break-word;
+}
+#telegram li span * {
+  display: inline !important;
+  margin: 0;
+  padding: 0;
+}
+#telegram li span a {
+  color: #4cb1ca;
+}
+#telegram li span:after {
+  visibility: hidden;
+  content: "."
+}
+#telegram ul {
   margin-bottom: -20px;
 }
 

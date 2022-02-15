@@ -23,8 +23,8 @@ import debug_toolbar
 
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('admin/',include('adminapp.urls',namespace='admin')),
+    path('admin/', admin.site.urls),
+    path('admins/',include('adminapp.urls',namespace='admins')),
     path('',mainapp.main,name='index'),
     path('products/', include('mainapp.urls', namespace='products')),
     path('auth/', include('authapp.urls', namespace='auth')),
@@ -33,6 +33,8 @@ urlpatterns = [
     path('product/',include('mainapp.urls',namespace='product')),
     path('',include('social_django.urls',namespace='social')),
     path('orders/',include('ordersapp.urls',namespace='orders')),
+    path('contacts/',mainapp.contacts,name='contacts'),
+    path('sitemap/',mainapp.sitemap,name='sitemap'),
 ]
 
 if settings.DEBUG:

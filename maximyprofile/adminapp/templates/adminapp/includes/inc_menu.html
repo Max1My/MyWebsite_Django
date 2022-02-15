@@ -16,5 +16,14 @@
             <span>{{ category.name }}</span>
             {% endif %}
         </a>
+    </li>
+        <li>
+             <a href="{% url 'adminapp:products' %}">
+            Продукты
+            {% if product %}
+            <span>{{ product.name }}</span>
+            {% endif %}
+             </a>
+        </li>
 </ul>
 </div>

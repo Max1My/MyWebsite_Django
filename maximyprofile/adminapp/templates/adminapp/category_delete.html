@@ -6,13 +6,13 @@
   <div class="category_delete">
     Уверены, что хотите удалить {{ object.name }}
     ?
-    <form action="{% url 'admin:category_delete' object.pk %}"
+    <form action="{% url 'admins:category_delete' object.pk %}"
           method="post">
       {% csrf_token %}
       <input class="btn btn-danger" type="submit" value="удалить">
     </form>
     <button class="btn btn-success">
-      <a href="{% url 'admin:categories' %}">
+      <a href="{% url 'admins:categories' %}">
         Отмена
       </a>
     </button>

@@ -2,42 +2,46 @@
 {% load static %}
 
 {% block content %}
-  <div class="products_list">
+<div id="content" class="container_12">
+
+    <div id="shopping_cart" class="grid_12">
+
+      <form id="cart" class="clearfix" action="#">
+        <table class="s_table_1" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <th width="65">Фотография</th>
+            <th width="320">Наименование</th>
+            <th width="65">Цена</th>
+            <th width="65">Количество</th>
+            <th width="320">Краткое описание</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
     {% for object in object_list %}
-      <div class="product_record">
-        <img
+      <tr valign="middle"><a href="#"></a><img
           src="/media/{{object.image|default:'products_images/default.jpg'}}"
-          alt="{{ object.name }}">
-        <div class="product_name">
+          alt="{{ object.name }}" width="60" height="60">
+      </tr>
+      <tr valign="middle"><a href="#"><strong>
           {{ object.name|title }}
-        </div>
-        <div class="product_actions">
-          <button>
-            <a href="{% url 'admin:product_read' object.pk %}">
-              подробнее
-            </a>
-          </button>
-          <button>
-            <a href="{% url 'admin:product_update' object.pk %}">
-              редактировать
-            </a>
-          </button>
-          <button>
-            <a href="{% url 'admin:product_delete' object.pk %}">
-              удалить
-            </a>
-          </button>
-        </div>
-        <div class="summary">
-          <b>цена</b>
+      </strong>
+      </a>
+      </tr>
+      <tr valign="middle">
           <p>{{ object.price }} руб</p>
-          <b>количество</b>
+      </tr>
+      <tr valign="middle">
           <p>{{ object.quantity }}</p>
-        </div>
-        <div class="product_desc">
+      </tr>
+      <tr valign="middle">
           {{ object.short_desc|title }}
-        </div>
-      </div>
+      </tr>
     {% endfor%}
+          </tr>
+        </table>
+      </form>
   </div>
+      <div class="clear"></div>
+</div>
 {% endblock %}

@@ -17,7 +17,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-(function($){
+;(function($){
 	$.fn.slides = function( option ) {
 		// override defaults with specified option
 		option = $.extend( {}, $.fn.slides.option, option );
@@ -532,4 +532,4 @@
 			}
 		}));
 	};
-})(jQuery);
+});
