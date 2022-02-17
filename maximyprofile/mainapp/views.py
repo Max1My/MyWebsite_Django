@@ -8,7 +8,7 @@ from basketapp.models import Basket
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
 from django.core.cache import cache
-from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page, never_cache
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 import random
@@ -209,6 +209,7 @@ def products_ajax(request,pk=None,page=1):
 
 
 # @cache_page(3600)
+@never_cache
 def products(request, pk=None,page=1):
     print(pk)
     title = "Продукты"
@@ -241,7 +242,7 @@ def products(request, pk=None,page=1):
             'products':products_paginator,
             'basket':basket,
         }
-        return render(request,'mainapp/products_list.html',content)
+        return render(request,'mainapp/products.html',content)
 
     hot_product = get_hot_product()
     same_products = get_same_products(hot_product)
@@ -257,7 +258,7 @@ def products(request, pk=None,page=1):
     }
 
     return render(request,'mainapp/products.html',content)
-
+@never_cache
 def product(request,pk):
     title = 'продукты'
     product = get_product(pk)

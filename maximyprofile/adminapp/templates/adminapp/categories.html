@@ -9,7 +9,6 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table mr-1"></i>
-                        Категории
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -27,7 +26,8 @@
 
                                 {% for category in object_list %}
                                     <tr>
-                                        <td valign="middle">{{ category.name }}</td>
+                                        <td valign="middle"><a href="{% url 'adminapp:products_category' category.id %}">{{ category.name }}
+                                        </a></td>
                                         <td valign="middle">{{ category.description }}</td>
                                         <td class="text-center">
                                             {% if category.is_active %}

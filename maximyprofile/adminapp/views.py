@@ -3,16 +3,14 @@ from authapp.models import ShopUser
 from mainapp.models import Product, ProductCategory
 from django.contrib.auth.decorators import user_passes_test
 from authapp.forms import ShopUserRegisterForm
-from adminapp.forms import ProductCategoryEditForm, ProductEditForm ,ShopUserAdminRegisterForm , ShopUserAdminProfileForm,ProductCategoryUpdateFormAdmin
+from adminapp.forms import ProductCategoryEditForm, ProductEditForm ,ShopUserAdminRegisterForm , ShopUserAdminProfileForm,ProductCategoryUpdateFormAdmin,ProductsForm
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-# Create your views here.
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView, DetailView, TemplateView
 from mainapp.mixin import BaseClassContextMixin, CustomDispatchMixin
+
+
 
 class IndexTemplateView(TemplateView):
     template_name = 'adminapp/admin.html'
@@ -91,46 +89,52 @@ class ProductCategoryDeleteView(DeleteView,BaseClassContextMixin,CustomDispatchM
         return HttpResponseRedirect(self.get_success_url())
 
 # Products
-class ProductListView(ListView):
+
+class ProductListView(ListView,BaseClassContextMixin,CustomDispatchMixin):
     model = Product
     template_name = 'adminapp/products.html'
+    title = 'Админка | Обновления категории'
 
-    @method_decorator(user_passes_test(lambda u: u.is_superuser))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+@user_passes_test(lambda u: u.is_superuser)
+def products_category(request,pk):
+    title = 'админка/продукты'
 
-class ProductCreateView(CreateView):
+    category = get_object_or_404(ProductCategory,pk=pk)
+    products_list = Product.objects.filter(category__pk=pk).order_by('name')
+
+    content = {
+        'title':title,
+        'category':category,
+        'objects':products_list,
+    }
+
+    return render(request,'adminapp/products_category.html',content)
+
+class ProductUpdateView(UpdateView, BaseClassContextMixin,CustomDispatchMixin):
     model = Product
-    template_name = 'adminapp/product_update.html'
-    success_url = reverse_lazy('admins:products')
-    fields = '__all__'
+    template_name = 'adminapp/product_update_delete.html'
+    form_class = ProductsForm
+    title = 'Админка | Обновление продукта'
+    success_url = reverse_lazy('adminapp:products')
 
+class ProductCreateView(CreateView, BaseClassContextMixin,CustomDispatchMixin):
+    model = Product
+    template_name = 'adminapp/product_create.html'
+    form_class = ProductsForm
+    title = 'Админка | Создание продукта'
+    success_url = reverse_lazy('admins:products')
+
+class ProductDeleteView(DeleteView, CustomDispatchMixin):
+    model = Product
+    template_name = 'adminapp/product_delete.html'
+    success_url = reverse_lazy('admins:products')
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.is_active = False if self.object.is_active else True
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'adminapp/product_read.html'
-
-class ProductUpdateView(UpdateView):
-    model = Product
-    template_name = 'adminapp/product_update.html'
-    success_url = reverse_lazy('admins:products')
-    fields = '__all__'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'продукты/редактирование'
-
-        return context
-
-class ProductDeleteView(DeleteView):
-    model = Product
-    template_name = 'adminapp/product_delete.html'
-    success_url = reverse_lazy('admins:products')
-    fields = '__all__'
-
-    def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        self.object.is_active = False
-        self.object.save()
-
-        return HttpResponseRedirect(self.get_success_url())

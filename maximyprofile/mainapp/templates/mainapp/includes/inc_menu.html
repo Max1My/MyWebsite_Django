@@ -1,7 +1,7 @@
 <div id="categories" class="s_nav">
     <ul>
           <li id="menu_home"> <a href="{% url 'index' %}">Главная</a> </li>
-            <li> <a href="{% url 'products:index' %}">Продукты</a></li>
+            <li> <a href="{% url 'products:index' %}">Каталог</a></li>
 {% if user.is_authenticated %}
 <li>
     <a href="{% url 'products:index' %}"

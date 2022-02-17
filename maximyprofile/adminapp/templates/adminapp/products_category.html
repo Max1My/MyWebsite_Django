@@ -17,13 +17,13 @@
             <th></th>
             <th></th>
           </tr>
-    {% for product in object_list %}
+    {% for product in objects %}
             <tr>
       <td valign="middle"><a href="#"></a><img
           src="/media/{{product.image|default:'products_images/default.jpg'}}"
           alt="{{ product.name }}" width="60" height="60">
       </td>
-      <td valign="middle"><a href="{% url 'adminapp:product_read' product.id %}"><strong>
+      <td valign="middle"><a href="{% url 'adminapp:product_read' product.pk%}"><strong>
           {{ product.name|title }}
       </strong>
       </a>

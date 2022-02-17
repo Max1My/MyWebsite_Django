@@ -6,11 +6,11 @@
         </a>
     </li>
     <li>
-        <a href="{% url 'adminapp:users' %}">Пользователи
+        <a href="{% url 'admins:users' %}">Пользователи
         </a>
     </li>
     <li>
-        <a href="{% url 'adminapp:categories' %}">
+        <a href="{% url 'admins:categories' %}">
             Категории
             {% if category %}
             <span>{{ category.name }}</span>
@@ -18,12 +18,8 @@
         </a>
     </li>
         <li>
-             <a href="{% url 'adminapp:products' %}">
+        <a href="{% url 'admins:products' %}">
             Продукты
-            {% if product %}
-            <span>{{ product.name }}</span>
-            {% endif %}
-             </a>
-        </li>
+        </a>
 </ul>
 </div>

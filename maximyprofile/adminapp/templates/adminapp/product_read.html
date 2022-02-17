@@ -2,48 +2,50 @@
 {% load static %}
 
 {% block content %}
-  <div class="product_read">
-    <div class="product_name">
-      Продукт<strong>{{ object.category.name|title }} /
-                     {{ object.name|title }}</strong>
-    </div>
-    <img src="/media/{{ object.image|default:'products_images/default.jpg' }}"
-         alt="{{ object.name }}">
-    <div class="summary">
-      <b>цена</b>
-      <p>{{ object.price }} руб</p>
-      <b>количество</b>
-      <p>{{ object.quantity }}</p>
-      <b>в каталоге</b>
-      <p>{% if object.is_active %}да{% else %}нет{% endif %}</p>
-      <p>
-        <button>
-          <a href="{% url 'admins:product_update' object.pk %}">
-            редактировать
-          </a>
-        </button>
-      </p>
-<p>
-        <button>
-          <a href="{% url 'admin:product_delete' object.pk %}">
-            удалить
-          </a>
-        </button>
-      </p>
-      <p>
-        <button>
-          <a href="{% url 'admin:products' object.category.pk %}">
-            назад
-          </a>
-        </button>
-      </p>
-    </div>
-    <div class="product_desc">
-      <b>краткая информация</b>
-      <p>{{ object.short_desc }}</p>
-      <br><br>
-      <b>подробная информация</b>
-      <p>{{ object.description }}</p>
+  <div id="content" class="container_16">
+    <div class="grid_16">
+              <form id="create" class="clearfix" action="#">
+                          <h2 class="s_title_1"><span class="s_secondary_color">Просмотр</span> Товара</h2>
+                          <div class="clear"></div>
+                          <div class="s_row_2 clearfix">
+                                        <label class="required"><strong>Наименование</strong></label>
+                                        <strong>{{ object.name|title }}</strong>
+                          </div>
+                            <div class="s_row_2 clearfix">
+                                        <label class="required"><strong>Категория</strong></label>
+                                        <strong>{{ object.category.name|title }}</strong>
+                          </div>
+                            <div class="s_row_2 clearfix">
+                                        <label class="required"><strong>Краткая информация</strong></label>
+                                        <strong>{{ object.short_desc }}</strong>
+                          </div>
+                        <div class="s_row_2 clearfix">
+                                        <label class="required"><strong>Цена</strong></label>
+                                        <strong>{{ object.price }} руб</strong>
+                          </div>
+                            <div class="s_row_2 clearfix">
+                                        <label class="required"><strong>Количество</strong></label>
+                                        <strong>{{ object.quantity }}</strong>
+                          </div>
+                        <div class="s_row_2 clearfix">
+                                        <label class="required"><strong>В каталоге?</strong></label>
+                                        <strong>{% if object.is_active %}да{% else %}нет{% endif %}</strong>
+                          </div>
+                          <div class="s_row_2 clearfix">
+                            <label><strong>Подробная информация</strong></label>
+                            <textarea rows="10" cols="87">
+                                {{ object.description }}
+                            </textarea>
+                            </div>
+                            <div class="s_row_2 clearfix">
+                            <label><strong>Изображение</strong></label>
+                            <img src="/media/{{ object.image|default:'products_images/default.jpg' }}"
+                            alt="{{ object.name }}">
+                            </div>
+                          <a class="s_button_1 s_main_color_bgr left" href="{% url 'admins:product_update' object.pk %}"><span class="s_text">Редактировать</span></a>
+                        <a class="s_button_1 s_ddd_bgr left" href="{% url 'admins:product_delete' object.pk %}"><span class="s_text">Удалить</span></a>
+                        <a class="s_button_1 s_ddd_bgr left" href="{% url 'admins:products' object.category.pk %}"><span class="s_text">Назад</span></a>
+              </form>
     </div>
   </div>
 {% endblock %}
