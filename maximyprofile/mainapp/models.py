@@ -20,7 +20,7 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField(verbose_name='количество на складе', default=0)
 
     def __str__(self):
-        return f"{self.name} ({self.category.name})"
+        return f"{self.name} | ({self.category})"
 
     def get_absolute_url(self):
         return reverse('product/product',kwargs={'product':self.pk})
