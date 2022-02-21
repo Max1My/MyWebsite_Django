@@ -38,9 +38,10 @@ def get_hot_products():
     return random.sample(list(products), 6)[0]
 
 def get_hot_product():
-    products = get_products()
+    if get_products():
+        products = get_products()
 
-    return random.sample(list(products),6)[0]
+        return random.sample(list(products),6)[0]
 
 def get_same_products(hot_product):
     same_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)[:6]

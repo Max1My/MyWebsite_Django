@@ -34,7 +34,7 @@ class RegisterListView(FormView, BaseClassContextMixin):
     model = ShopUser
     template_name = 'authapp/register.html'
     form_class = ShopUserRegisterForm
-    title = 'GeekShop - Регистрация'
+    title = 'MaxiMyShop - Регистрация'
     success_url = reverse_lazy('auth:login')
 
     def post(self, request, *args, **kwargs):
