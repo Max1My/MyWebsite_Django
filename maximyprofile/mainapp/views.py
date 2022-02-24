@@ -130,11 +130,11 @@ def get_products_in_category_ordered_by_price(pk):
         key = f'products_in_category_ordered_by_price_{pk}'
         products = cache.get(key)
         if products is None:
-            products = Product.objects.filter(category=pk, is_active=True).order_by('price')
+            products = Product.objects.filter(category__pk=pk,is_active=True).order_by('price')
             cache.set(key,products)
         return products
     else:
-        Product.objects.filter(category__pk=pk, is_active=True).order_by('price')
+        Product.objects.filter(category__pk=pk,is_active=True).order_by('price')
 
 def get_products():
     if settings.LOW_CACHE:
