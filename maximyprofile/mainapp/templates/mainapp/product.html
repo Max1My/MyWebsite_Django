@@ -171,7 +171,7 @@
           </div>
           {% endfor %}
           <span class="clear s_mb_15 border_eee"></span>
-          <div class="s_total clearfix"><strong class="cart_module_total left">Total:</strong><span class="cart_module_total"{{ basket_items.0.total_cost }}<span class="s_currency s_after"> rub</span></span></div>
+          <div class="s_total clearfix"><strong class="cart_module_total left">Total:</strong><span class="cart_module_total">{{ basket.0.total_cost|floatformat:0 }}<span class="s_currency s_after"> rub</span></span></div>
           <span class="clear s_mb_15"></span>
           <div class="align_center clearfix">
             <a class="s_button_1 s_secondary_color_bgr s_ml_0" href="cart.html"><span class="s_text">View Cart</span></a>
