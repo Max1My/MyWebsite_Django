@@ -172,46 +172,46 @@ def get_product(pk):
     else:
         return get_object_or_404(Product, pk=pk)
 
-# def products_ajax(request,pk=None,page=1):
-#     if request.is_ajax():
-#         links_menu = get_links_menu()
-#
-#         if pk:
-#             if pk == '0':
-#                 category = {
-#                     'pk': 0,
-#                     'name': 'все',
-#                 }
-#                 products = get_products_ordered_by_price()
-#             else:
-#                 category = get_category(pk)
-#                 products = get_products_in_category_ordered_by_price(pk)
-#
-#             paginator = Paginator(products, 2)
-#             try:
-#                 products_paginator = paginator.page(page)
-#             except PageNotAnInteger:
-#                 products_paginator = paginator.page(1)
-#             except EmptyPage:
-#                 products_paginator = paginator.page(paginator.num_pages)
-#
-#             hot_product = get_hot_product()
-#             same_products = get_same_products(hot_product)
-#
-#             content = {
-#                 'links_menu': links_menu,
-#                 'category': category,
-#                 'products': products_paginator,
-#                 'hot_product': hot_product,
-#                 "same_products": same_products,
-#             }
-#
-#             result = render_to_string(
-#                         'mainapp/includes/inc_products_list_content.html',
-#                         context=content,
-#                         request=request)
-#
-#             return JsonResponse({'result': result})
+def products_ajax(request,pk=None,page=1):
+    if request.is_ajax():
+        links_menu = get_links_menu()
+
+        if pk:
+            if pk == '0':
+                category = {
+                    'pk': 0,
+                    'name': 'все',
+                }
+                products = get_products_ordered_by_price()
+            else:
+                category = get_category(pk)
+                products = get_products_in_category_ordered_by_price(pk)
+
+            paginator = Paginator(products, 2)
+            try:
+                products_paginator = paginator.page(page)
+            except PageNotAnInteger:
+                products_paginator = paginator.page(1)
+            except EmptyPage:
+                products_paginator = paginator.page(paginator.num_pages)
+
+            hot_product = get_hot_product()
+            same_products = get_same_products(hot_product)
+
+            content = {
+                'links_menu': links_menu,
+                'category': category,
+                'products': products_paginator,
+                'hot_product': hot_product,
+                "same_products": same_products,
+            }
+
+            result = render_to_string(
+                        'mainapp/includes/inc_products_list_content.html',
+                        context=content,
+                        request=request)
+
+            return JsonResponse({'result': result})
 
 
 # @cache_page(3600)
