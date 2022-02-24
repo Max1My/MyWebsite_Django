@@ -115,15 +115,15 @@ def get_category(pk):
        return get_object_or_404(ProductCategory, pk=pk)
 
 def get_products_ordered_by_price():
-    if settings.LOW_CACHE:
-        key = 'products_ordered_by_price'
-        products = cache.get(key)
-        if products is None:
-            products = Product.objects.filter(is_active=True).order_by('price')
-            cache.set(key,products)
-        return products
-    else:
-        return Product.objects.filter(is_active=True).order_by('price')
+   if settings.LOW_CACHE:
+       key = 'products_ordered_by_price'
+       products = cache.get(key)
+       if products is None:
+           products = Product.objects.all().order_by('price')
+           cache.set(key, products)
+       return products
+   else:
+       return Product.objects.all().order_by('price')
 
 def get_products_in_category_ordered_by_price(pk):
     if settings.LOW_CACHE:
