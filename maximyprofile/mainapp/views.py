@@ -119,11 +119,11 @@ def get_products_ordered_by_price():
        key = 'products_ordered_by_price'
        products = cache.get(key)
        if products is None:
-           products = Product.objects.all().order_by('price')
+           products = Product.objects.order_by('price')
            cache.set(key, products)
        return products
    else:
-       return Product.objects.all().order_by('price')
+       return Product.objects.order_by('price')
 
 def get_products_in_category_ordered_by_price(pk):
     if settings.LOW_CACHE:
