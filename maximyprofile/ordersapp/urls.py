@@ -1,6 +1,6 @@
 from django.urls import path
 from ordersapp.views import OrderListView,OrderCreateView,OrderDeleteView,OrderDetailView,OrderUpdateView,order_forming_complete
-from ordersapp.views import get_product_price
+from ordersapp.views import get_product_price, payment_result
 
 app_name = 'ordersapp'
 urlpatterns = [
