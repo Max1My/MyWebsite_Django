@@ -14,7 +14,7 @@
 {% endif %}
 <div class="container">syn
 
-    {% object.status == 'STP' %}
+    {% if object.status == 'STP' %}
 
         <form name="payment" method="post" action="https://sci.interkassa.com/" accept-charset="UTF-8">
             <input type="hidden" name="ik_co_id" value="62176ac8a675de5c214efd52"/>
