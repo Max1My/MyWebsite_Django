@@ -195,10 +195,15 @@ def products_ajax(request,pk=None,page=1):
             except EmptyPage:
                 products_paginator = paginator.page(paginator.num_pages)
 
+            hot_product = get_hot_product()
+            same_products = get_same_products(hot_product)
+
             content = {
                 'links_menu': links_menu,
                 'category': category,
                 'products': products_paginator,
+                'hot_product': hot_product,
+                "same_products": same_products,
             }
 
             result = render_to_string(
