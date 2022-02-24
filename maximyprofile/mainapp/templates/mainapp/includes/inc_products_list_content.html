@@ -57,13 +57,25 @@
       </div>
     </div>
 
-    <div id="right_col" class="grid_3">
+<div id="right_col" class="grid_3">
       <div id="cart_side" class="s_box_1 s_cart_holder">
-        <h2 class="s_secondary_color">Корзина</h2>
+        <h2 class="s_secondary_color">Shopping Cart</h2>
         <div id="cart_side_contents">
-          <p class="s_mb_0">{{ basket.0.total_quantity }} товаров.</p>
+            {% for item in basket %}
+          <div class="s_cart_item">
+            <a id="hremove_95" class="s_button_remove" href="{% url 'basket:remove' item.pk %}">&nbsp;</a>
+            <span class="block">1x <a href="product.html">{{ item.product.name }}</a></span>
+          </div>
+          {% endfor %}
+          <span class="clear s_mb_15 border_eee"></span>
+          <div class="s_total clearfix"><strong class="cart_module_total left">Total:</strong><span class="cart_module_total">{{ basket.0.total_cost|floatformat:0 }}<span class="s_currency s_after"> rub</span></span></div>
+          <span class="clear s_mb_15"></span>
+          <div class="align_center clearfix">
+            <a class="s_button_1 s_secondary_color_bgr s_ml_0" href="{% url 'basket:view' %}"><span class="s_text">View Cart</span></a>
+            <a class="s_button_1 s_secondary_color_bgr" href="{% url 'orders:list' %}"><span class="s_text">Checkout</span></a>
+          </div>
+
         </div>
-      </div>
 
       <div id="categories_module" class="s_box">
         <h2>Категории</h2>
