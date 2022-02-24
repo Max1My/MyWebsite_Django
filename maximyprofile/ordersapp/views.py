@@ -151,7 +151,7 @@ def get_product_price(request,pk):
 
 
 def payment_result(request):
-    status = request.GET.set('ik_inv_st')
+    status = request.GET.get('ik_inv_st')
     if status == 'success':
         order_pk = request.GET.get('ik_pm_no')
         order_item = Order.objects.get(pk=order_pk)
