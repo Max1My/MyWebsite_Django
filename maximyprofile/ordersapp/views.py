@@ -157,7 +157,7 @@ def payment_result(request):
         order_item = Order.objects.get(pk=order_pk)
         order_item.status = Order.PAID
         order_item.save()
-    if status == 'canceled':
+    if status == 'fail':
         order_pk = request.GET.get('ik_pm_no')
         order_item = Order.objects.get(pk=order_pk)
         order_item.status = Order.CNC
