@@ -37,19 +37,10 @@
           <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4de0eff004042e7a"></script>
           <!-- AddThis Button END -->
         </div>
-        <div id="product_options">
-          <h3>Available Options</h3>
-          <label for="option_Memory">Memory</label>
-          <select id="option_Memory">
-            <option value="676">1 GB +29.38<span class="s_currency s_after"> eur</span> </option>
-            <option value="677">2 GB +47.00<span class="s_currency s_after"> eur</span> </option>
-          </select>
-          <span class="clear"></span>
-        </div>
         <div id="product_buy" class="clearfix">
           <label for="product_buy_quantity">Qty:</label>
           <input id="product_buy_quantity" type="text" size="2" />
-          <a id="add_to_cart" class="s_main_color_bgr"><span class="s_text"><span class="s_icon"></span> Add to Cart</span></a>
+          <a id="add_to_cart" class="s_main_color_bgr" href="{% url 'basket:add' product.pk %}"><span class="s_text"><span class="s_icon"></span> Add to Cart</span></a>
         </div>
       </div>
       <div class="clear"></div>

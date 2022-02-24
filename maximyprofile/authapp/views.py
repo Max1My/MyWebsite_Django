@@ -25,10 +25,10 @@ class LoginListView(LoginView,BaseClassContextMixin):
     title = 'Авторизация'
     success_url = reverse_lazy('auth:login')
 
-    def get(self,request,*args, **kwargs):
-        if self.request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('index'))
-        return HttpResponseRedirect(reverse('authapp:login'))
+    # def get(self,request,*args, **kwargs):
+    #     if self.request.user.is_authenticated:
+    #         return HttpResponseRedirect(reverse('index'))
+    #     return HttpResponseRedirect(reverse('authapp:login'))
 
 class RegisterListView(FormView, BaseClassContextMixin):
     model = ShopUser
