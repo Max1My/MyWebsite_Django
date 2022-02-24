@@ -228,8 +228,8 @@ def products(request, pk=None,page=1):
         if pk == 0:
             products = Product.objects.all().order_by('price')
         else:
-            category = get_category(pk)
-            products = get_products_in_category_ordered_by_price(pk)
+            category = get_object_or_404(ProductCategory,pk=pk)
+            products = Product.objects.filter(category__pk=pk,is_active=True).order_by('price')
 
         pagintor = Paginator(products, 2)
 
