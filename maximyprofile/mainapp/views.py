@@ -266,6 +266,9 @@ def products(request, pk=None,page=1):
     return render(request,'mainapp/products.html',content)
 @never_cache
 def product(request,pk):
+    hot_product = get_hot_product()
+    same_products = get_same_products(hot_product)
+
     title = 'продукты'
     product = get_product(pk)
 
@@ -275,6 +278,8 @@ def product(request,pk):
         'product':product,
         'basket':get_basket(request.user),
         'menu':menu,
+        'hot_product':hot_product,
+        'same_products':same_products,
     }
 
     return render(request,'mainapp/product.html', content)
