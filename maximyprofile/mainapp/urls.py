@@ -6,7 +6,7 @@ from mainapp.views import products, product,products_ajax,contacts,sitemap
 app_name = 'mainapp'
 
 urlpatterns = [
-   path('', cache_page(3600)(products_ajax), name='index'),
+   path('', products, name='index'),
    # path('category/<int:pk>/', products, name='category'),
    path('category/<int:pk>/$', cache_page(3600)(products),name='category'),
    path('category/<int:pk>/ajax/$',cache_page(3600)(products_ajax)),
