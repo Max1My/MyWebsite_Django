@@ -168,7 +168,7 @@ LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_ERROR_URL = '/'
 
-DOMAIN_NAME = 'https://maximyshop.site/'
+DOMAIN_NAME = 'https://maximyshop.site'
 # DOMAIN_NAME = 'http://127.0.0.1/'
 
 with open('maximyprofile/mail.json', 'r') as f:
