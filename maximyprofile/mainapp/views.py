@@ -240,6 +240,9 @@ def products(request, pk=None,page=1):
         except EmptyPage:
             products_paginator = pagintor.page(pagintor.num_pages)
 
+        hot_product = get_hot_product()
+        same_products = get_same_products(hot_product)
+
         content = {
             "title":title,
             'links_menu':links_menu,
@@ -247,6 +250,8 @@ def products(request, pk=None,page=1):
             "menu":menu,
             'products':products_paginator,
             'basket':basket,
+            'hot_product': hot_product,
+            "same_products": same_products,
         }
         return render(request,'mainapp/products.html',content)
 
