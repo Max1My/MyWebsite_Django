@@ -261,7 +261,7 @@ def products(request, pk=None,page=1):
         "same_products": same_products,
         "menu": menu,
         'basket':basket,
-        'products':products
+        'products':Product.objects.all().order_by('price')
     }
 
     return render(request,'mainapp/products.html',content)
