@@ -74,7 +74,7 @@ class RegisterListView(FormView, BaseClassContextMixin):
 
 
 class Logout(LogoutView):
-    success_url = reverse_lazy('mainapp:index')
+    success_url = reverse_lazy('mainapp/index.html')
 
 class ProfileFormView(UpdateView,BaseClassContextMixin,UserDispatchMixin):
     template_name = 'authapp/profile.html'
