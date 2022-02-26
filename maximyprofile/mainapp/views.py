@@ -226,7 +226,7 @@ def products(request, pk=None,page=1):
 
     if pk is not None:
         if pk == 0:
-            products = Product.objects.all().order_by('price')
+            products = Product.objects.all()
         else:
             category = get_object_or_404(ProductCategory,pk=pk)
             products = Product.objects.filter(category__pk=pk,is_active=True).order_by('price')
