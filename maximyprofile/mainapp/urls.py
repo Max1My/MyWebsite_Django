@@ -7,6 +7,7 @@ app_name = 'mainapp'
 
 urlpatterns = [
    path('', products, name='index'),
+   path('products', products, name='products'),
    path('category/<int:pk>/', products, name='category'),
    path('category/<int:pk>/$', cache_page(3600)(products),name='category'),
    # path('category/<int:pk>/ajax/$',cache_page(3600)(products_ajax)),
