@@ -44,12 +44,12 @@
 <!--            </a>-->
 <!--          </button>-->
           <button>
-            <a href="{% url 'adminapp:product_update' product.id %}">
+            <a href="{% url 'adminapp:product_update' product.pk %}">
               редактировать
             </a>
           </button>
           <button>
-            <a href="{% url 'adminapp:product_delete' product.id %}">
+            <a href="{% url 'adminapp:product_delete' product.pk %}">
               удалить
             </a>
           </button>
