@@ -37,7 +37,7 @@ class UserUpdateView(UpdateView, BaseClassContextMixin, CustomDispatchMixin):
     model = ShopUser
     template_name = 'adminapp/user_update.html'
     form_class = ShopUserAdminProfileForm
-    success_url = reverse_lazy('adminapp:users_update')
+    success_url = reverse_lazy('adminapp:users')
     title = 'Админка | Обновить пользователя'
 
 
