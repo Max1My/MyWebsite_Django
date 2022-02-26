@@ -153,7 +153,7 @@ class ProductCreateView(CreateView, BaseClassContextMixin, CustomDispatchMixin):
 class ProductDeleteView(DeleteView, CustomDispatchMixin):
     model = Product
     template_name = 'adminapp/product_delete.html'
-    # success_url = reverse_lazy('admins:products')
+    success_url = reverse_lazy('admins:products')
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
