@@ -21,7 +21,7 @@
           <dt>Model</dt>
           <dd>{{ product.name }}</dd>
           <dt>Manufacturer</dt>
-          <dd><a href="#">{{ product.category }}</a></dd>
+          <dd><a href="{% url 'products:category' link.pk %}">{{ product.category }}</a></dd>
           <dt>Average Rating</dt>
           <dd>
             <p class="s_rating s_rating_5"><span style="width: 100%;" class="s_percent"></span></p>
