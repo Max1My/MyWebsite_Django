@@ -73,8 +73,9 @@ class RegisterListView(FormView, BaseClassContextMixin):
 
 
 
-class Logout(LogoutView):
-    success_url = reverse_lazy('index')
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('index'))
 
 class ProfileFormView(UpdateView,BaseClassContextMixin,UserDispatchMixin):
     template_name = 'authapp/profile.html'
