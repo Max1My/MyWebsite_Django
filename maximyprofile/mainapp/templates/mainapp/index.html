@@ -9,7 +9,7 @@
       <div id="product_intro" class="container_12">
         <div id="product_intro_info" class="grid_5">
           <div style="position: relative;">
-            <h2><a href="#">{{ hot_product.name }}</a></h2>
+            <h2><a href="{% url 'product:product' hot_product.pk %}">{{ hot_product.name }}</a></h2>
             <div class="s_rating_holder">
               <p class="s_rating s_rating_big s_rating_5"> <span style="width: 60%;" class="s_percent"></span> </p>
               <span class="s_average">3 out of 5</span> </div>
@@ -21,7 +21,7 @@
         </div>
         <div id="product_intro_preview">
           <div class="slides_container">
-            <div class="slideItem" style="display: block"><a href=""><img src="/media/{{ hot_product.image }}" alt="" style="width:300px; height:300px;" /></a></div>
+            <div class="slideItem" style="display: block"><a href="{% url 'product:product' hot_product.pk %}"><img src="/media/{{ hot_product.image }}" alt="" style="width:300px; height:300px;" /></a></div>
           </div>
           <a class="s_button_prev" href="javascript:;"></a>
           <a class="s_button_next" href="javascript:;"></a>
