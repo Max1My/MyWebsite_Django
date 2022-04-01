@@ -1,0 +1,87 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block intro %}
+<!-- ********************** -->
+  <!--     I N T R O          -->
+  <!-- ********************** -->
+<div id="intro">
+    <div id="intro_wrap">
+      <div id="product_intro" class="container_12">
+        <div id="product_intro_info" class="grid_5">
+          <div style="position: relative;">
+            <h2><a href="{% url 'product:product' hot_product.pk %}">{{ hot_product.name }}</a></h2>
+            <div class="s_rating_holder">
+              <p class="s_rating s_rating_big s_rating_5"> <span style="width: 60%;" class="s_percent"></span> </p>
+              <span class="s_average">3 out of 5</span> </div>
+            <p class="s_desc"> {{ hot_product.description }}</p>
+            <div class="s_price_holder">
+              <p class="s_price"> <span class="s_currency s_before">₽</span>{{ hot_product.price }} </p>
+            </div>
+          </div>
+        </div>
+        <div id="product_intro_preview">
+          <div class="slides_container">
+            <div class="slideItem" style="display: block"><a href="{% url 'product:product' hot_product.pk %}"><img src="/media/{{ hot_product.image }}" alt="" style="width:300px; height:300px;" /></a></div>
+          </div>
+          <a class="s_button_prev" href="javascript:;"></a>
+          <a class="s_button_next" href="javascript:;"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+	<script type="text/javascript" src="{% static 'js/jquery/jquery.slides.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/shoppica.products_slide.js' %}"></script>
+  <!-- end of intro -->
+{% endblock %}
+
+{% block content %}
+
+  <!-- ********************** -->
+  <!--      C O N T E N T     -->
+  <!-- ********************** -->
+  <div id="content" class="container_12">
+
+    <div id="welcome" class="grid_12">
+      <h2>Добро пожаловать в интернет-магазин "MaxiMy"</h2>
+      <p> Привет, Меня зовут <a href="https://github.com/Max1My">Максим</a>.Я разработчик своего учебного проекта в Django. Как видите, проект еще сырой. Я обновляю его каждый день. Это ознакомительная версия.</p>
+    </div>
+
+    <div class="clear"></div>
+
+    <div id="special_home" class="grid_12">
+      <h2 class="s_title_1"><span class="s_main_color">Горячее</span> Предложение</h2>
+      <div class="clear"></div>
+      <div class="s_listing s_grid_view clearfix">
+        {% for spec_product in same_products %}
+        <div class="s_item grid_2"> <a class="s_thumb" href="{% url 'product:product' spec_product.pk %}"><img src="/media/{{ spec_product.image }}" title="{{ spec_product.name }}" alt="{{ spec_product.short_desc }}" /></a>
+          <h3><a href="{% url 'product:product' spec_product.pk %}">{{ spec_product.name }}</a></h3>
+          <p class="s_model">{{ spec_product.name }}</p>
+          <p class="s_price s_promo_price"><span class="s_old_price"><span class="s_currency s_before">₽</span>1,538.69</span><span class="s_currency s_before">₽</span>{{ spec_product.price }}</p>
+          <a class="s_button_add_to_cart" href="{% url 'basket:add' spec_product.pk %}"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
+        </div>
+        {% endfor %}
+        <div class="clear"></div>
+      </div>
+    </div>
+
+
+
+    <div id="latest_home" class="grid_12">
+      <h2 class="s_title_1"><span class="s_main_color">Последнее</span> Поступление</h2>
+      <div class="clear"></div>
+      <div class="s_listing s_grid_view clearfix">
+        {% for product in products %}
+  <div class="s_item grid_2"><a class="s_thumb" href="{% url 'product:product' product.pk %}"><img src="/media/{{ product.image }}" alt="{{ product.short_desc }}" title="{{ product.name }}"/></a>
+    <a href="#">
+      <div class="text">
+        <p class="s_model">{{ product.name }}</p>
+      </div>
+    </a>
+  </div>
+{% endfor %}
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  <!-- end of content -->
+{% endblock %}

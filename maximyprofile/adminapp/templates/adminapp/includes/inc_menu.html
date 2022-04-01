@@ -1,25 +1,22 @@
-<div id="categories" class="s_nav">
-    <ul class="links-menu">
-    <li>
-        <a href="{% url 'index' %}">
-            на сайт
-        </a>
-    </li>
-    <li>
-        <a href="{% url 'admins:users' %}">Пользователи
-        </a>
-    </li>
-    <li>
-        <a href="{% url 'admins:categories' %}">
-            Категории
-            {% if category %}
-            <span>{{ category.name }}</span>
-            {% endif %}
-        </a>
-    </li>
-        <li>
-        <a href="{% url 'admins:products' %}">
-            Продукты
-        </a>
-</ul>
-</div>
+<div class="mainmenu-area">
+        <div class="container">
+            <div class="row">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'admins:users' %}">Users</a></li>
+                        <li><a href="{% url 'admins:categories' %}">Categories</a></li>
+                        <li><a href="{% url 'admins:products' %}">Products</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div> <!-- End mainmenu area -->

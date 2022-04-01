@@ -1,164 +1,62 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
-{% block menu %}
-{% include 'mainapp/includes/inc_categories_menu.html' %}
-{% endblock %}
-{% block content %}
-<div id="content" class="container_12">
-    <div id="category" class="grid_9">
-      <div id="listing_options">
-        <div id="listing_sort" class="s_switcher">
-          <span class="s_selected">Default</span>
-          <ul class="s_options" style="display: none;">
-            <li><a href="">Name A - Z</a></li>
-            <li><a href="">Name Z - A</a></li>
-            <li><a href="">Price Low &gt; High</a></li>
-            <li><a href="">Price High &gt; Low</a></li>
-            <li><a href="">Rating Highest</a></li>
-            <li><a href="">Rating Lowest</a></li>
-            <li><a href="">Model z - Z</a></li>
-            <li><a href="">Model Z - A</a></li>
-          </ul>
+ {% block menu %}
+ {% include 'mainapp/includes/inc_categories_menu.html' %}
+ {% endblock %}
+ {% block content %}
+
+
+
+
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                {% for product in products %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img src="/media/{{ product.image }}" alt="">
+                        </div>
+                        <h2><a href="{% url 'product:product' product.pk %}">{{ product.name }}</a></h2>
+                        <div class="product-carousel-price">
+                            <ins>{{ product.price }} RUB</ins> <del>$999.00</del>
+                        </div>
+
+                        <div class="product-option-shop">
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="{% url 'basket:add' product.pk %}">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-pagination text-center">
+                        <nav>
+                          <ul class="pagination">
+                            <li>
+                              <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                              </a>
+                            </li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li>
+                              <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="view_mode" class="s_nav">
-          <ul class="clearfix">
-            <li id="view_grid"><a href="listing_2.html"><span class="s_icon"></span>Grid</a></li>
-            <li id="view_list" class="s_selected"><a href="listing_1.html"><span class="s_icon"></span>List</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="clear"></div>
-      <div class="s_listing s_list_view clearfix">
-{% for product in products %}
-<div class="s_item clearfix">
-          <div class="grid_3 alpha"> <a class="s_thumb" href="{% url 'product:product' product.pk %}"><img src="/media/{{ product.image }}" title="{{ product.name }}" alt="Leica M7" /></a> </div>
-          <div class="grid_6 omega">
-            <h3><a href="{% url 'product:product' product.pk %}">{{ product.name }}</a></h3>
-            <p class="s_model">{{ product.category.name }}</p>
-            <p class="s_price s_promo_price"><span class="s_old_price"><span class="s_currency s_before">£</span>940.00</span> <span class="s_currency s_before"></span>{{ product.price }}</p>
-            <p class="s_description">{{ product.description }}</p>
-            <p class="s_description">{{ product.category.name }}</p>
-            <a class="s_button_add_to_cart" href="{% url 'basket:add' product.pk %}"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
-          </div>
-        </div>
-        <div class="clear"></div>
-{% endfor %}
-          </div>
-      <div class="pagination">
-        <div class="results">
-          {% if products.has_previous %}
-          <a href="{% url 'products:page' category.pk products.previous_page_number %}"><</a>
-          {% endif %}
-          страница {{ products.number }} из
-            {{ products.paginator.num_pages }}
-          {% if products.has_next %}
-          <a href="{% url 'products:page' category.pk products.next_page_number %}">
-              >
-          </a>
-          {% endif %}
-        </div>
-      </div>
     </div>
 
-<div id="right_col" class="grid_3">
-      <div id="cart_side" class="s_box_1 s_cart_holder">
-        <h2 class="s_secondary_color">Shopping Cart</h2>
-        <div id="cart_side_contents">
-            {% for item in basket %}
-          <div class="s_cart_item">
-            <a id="hremove_95" class="s_button_remove" href="{% url 'basket:remove' item.pk %}">&nbsp;</a>
-            <span class="block">1x <a href="product.html">{{ item.product.name }}</a></span>
-          </div>
-          {% endfor %}
-          <span class="clear s_mb_15 border_eee"></span>
-          <div class="s_total clearfix"><strong class="cart_module_total left">Total:</strong><span class="cart_module_total">{{ basket.0.total_cost|floatformat:0 }}<span class="s_currency s_after"> rub</span></span></div>
-          <span class="clear s_mb_15"></span>
-          <div class="align_center clearfix">
-            <a class="s_button_1 s_secondary_color_bgr s_ml_0" href="{% url 'basket:view' %}"><span class="s_text">View Cart</span></a>
-            <a class="s_button_1 s_secondary_color_bgr" href="{% url 'orders:list' %}"><span class="s_text">Checkout</span></a>
-          </div>
-
-        </div>
-      </div>
-
-      <div id="categories_module" class="s_box">
-        <h2>Категории</h2>
-        <div class="s_list_1">
-          <ul>
-            {% for link in links_menu %}
-          	<li>
-            	<a href="{% url 'products:category' link.pk %}"><b>{{ link.name }}</b></a>
-            	<ul>
-<!--              	<li><a href="listing_1.html">Digital Cameras</a></li>-->
-<!--                <li><a href="listing_1.html">Home Audio</a></li>-->
-<!--                <li><a href="listing_1.html">Home Cinema</a></li>-->
-<!--                <li><a href="listing_1.html">Cell Phones</a></li>-->
-<!--                <li><a href="listing_1.html">MP3 Players</a></li>-->
-<!--                <li><a href="listing_1.html">Car-Audio</a></li>-->
-              </ul>
-            </li>
-            {% endfor %}
-          </ul>
-      	</div>
-      </div>
-
-<!--    	<div id="brands_module" class="s_box">-->
-<!--        <h2>Brands</h2>-->
-<!--        <select onchange="location = this.value">-->
-<!--          <option> -&#45;&#45; Please Select -&#45;&#45; </option>-->
-<!--          <option>Adidas</option>-->
-<!--          <option>Apple</option>-->
-<!--          <option>Armani</option>-->
-<!--          <option>Balenciaga</option>-->
-<!--          <option>Bvlgari</option>-->
-<!--          <option>Canon</option>-->
-<!--          <option>Christian Dior</option>-->
-<!--          <option>Elisabeth Arden</option>-->
-<!--          <option>Hewlett-Packard</option>-->
-<!--          <option>HTC</option>-->
-<!--          <option>Hugo Boss</option>-->
-<!--          <option>Nike</option>-->
-<!--          <option>Nikon</option>-->
-<!--          <option>Palm</option>-->
-<!--          <option>Panasonic</option>-->
-<!--          <option>Reebok</option>-->
-<!--          <option>Samsung</option>-->
-<!--          <option>Sony</option>-->
-<!--          <option>Swarovski</option>-->
-<!--        </select>-->
-<!--      </div>-->
-
-       <div id="bestseller_side" class="s_box clearfix">
-        <h2>Бестселлеры</h2>
-		{% for product in same_products %}
-        <div class="s_item s_size_1 clearfix">
-          <a class="s_thumb" href="{% url 'product:product' product.pk %}"><img src="/media/{{ product.image }}" width="38" height="38" alt="{{ product.name }}" /></a>
-          <h3><a href="{% url 'product:product' product.pk %}">{{ product.name }}</a></h3>
-          <p><a href="{% url 'product:product' product.pk %}"><span class="s_main_color"><span class="s_currency s_before"></span>{{ product.price }}</span> RUB.</a></p>
-        </div>
-         {% endfor %}
-      </div>
-
-
-      <div id="information_module" class="s_box">
-        <h2>Информация</h2>
-        <ul class="s_list_1">
-          <li><a href="{% url 'contacts' %}">Связь с нами</a></li>
-          <li><a href="#">Карта сайта</a></li>
-        </ul>
-      </div>
-
-    <div id="featured_side" class="s_box clearfix">
-        <h2>Рекомендуемые товары</h2>
-		{% for spec_product in same_products %}
-        <div class="s_item s_size_1 clearfix">
-          <a class="s_thumb" href="{% url 'product:product' spec_product.pk %}"><img src="/media/{{ spec_product.image }}" width="38" height="38" alt="{{ spec_product.name }}" /></a>
-          <h3><a href="{% url 'product:product' spec_product.pk %}">{{ spec_product.name }}</a></h3>
-          <p><a href="{% url 'product:product' spec_product.pk %}"><span class="s_main_color"><span class="s_currency s_before"></span>{{ spec_product.price }}</span> Rub.</a></p>
-        </div>
-		{% endfor %}
-      </div>
-    </div>
-  </div>
-  <!-- end of content -->
 {% endblock %}

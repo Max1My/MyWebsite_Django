@@ -1,74 +1,55 @@
 {% extends 'adminapp/base.html' %}
-
+{% load static %}
 {% block content %}
-
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid">
-                <h1 class="mt-4">{{ title }}</h1>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table mr-1"></i>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="s_table_1" width="100%" cellpadding="0" cellspacing="0" border="0">
-                                <thead>
-                                <tr>
-                                    <th>Наименование</th>
-                                    <th>Описание</th>
-                                    <th>Активный</th>
-                                    <th>Удалить</th>
-                                    <th>Изменить</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
+<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table">
+						  <thead class="thead-primary">
+						    <tr>
+						    	<th>Name</th>
+						    	<th>Description</th>
+						    	<th>Active</th>
+						      <th>Delete</th>
+						      <th>Edit</th>
+						    </tr>
+						  </thead>
+						  <tbody>
                                 {% for category in object_list %}
-                                    <tr>
-                                        <td valign="middle"><a href="{% url 'adminapp:products_category' category.id %}">{{ category.name }}
-                                        </a></td>
-                                        <td valign="middle">{{ category.description }}</td>
-                                        <td class="text-center">
-                                            {% if category.is_active %}
-                                                <i class="fas fa-check-circle"></i>
-                                            {% else %}
-
-                                                <i class="fas fa-times-circle"></i>
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            <form action="{% url 'admins:category_delete' category.id %}" method="post">
-                                                {% csrf_token %}
-                                                <input class="btn btn-danger btn-block" type="submit" value="Удалить">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <a href="{% url 'adminapp:category_update' pk=category.id %}">
-                                                <input class="btn btn-success btn-block" type="submit" value="Изменить">
-                                            </a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card-footer">
+						    <tr class="alert" role="alert">
+						      <td>
+						      	<div class="email"><a href="{% url 'adminapp:products_category' category.id %}">
+									<span>{{ category.name }}</span></a>
+						      	</div>
+						      </td>
+						      <td>{{ category.description }}</td>
+                                {% if category.is_active %}
+						      <td>True</td>
+                                {% else %}
+                                <td>False</td>
+                                {% endif %}
+						      <td>
+						      	<a href="{% url 'admins:category_delete' category.id %}">Delete</a>
+				        	</td>
+                                <td>
+						      	<a href="{% url 'adminapp:category_update' pk=category.id %}">Edit</a>
+				        	</td>
+						    </tr>
+						  {% endfor %}
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+</section>
+<div class="card-footer">
                         <a href="{% url 'adminapp:category_create' %}">
-                            <button class="btn btn-success">Создать категорию</button>
+                            <button class="btn btn-success">Add Category</button>
                         </a>
                     </div>
-                </div>
-            </div>
-        </main>
-        <footer class="py-4 bg-light mt-auto">
-            <div class="container-fluid">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; GeekShop 2021</div>
-                </div>
-            </div>
-        </footer>
-    </div>
-
 {% endblock %}

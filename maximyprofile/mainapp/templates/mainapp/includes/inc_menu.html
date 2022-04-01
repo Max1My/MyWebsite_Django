@@ -1,36 +1,21 @@
-<div id="categories" class="s_nav">
-    <ul>
-          <li id="menu_home"> <a href="{% url 'index' %}">Главная</a> </li>
-            <li> <a href="{% url 'products:index' %}">Каталог</a></li>
-{% if user.is_authenticated %}
-<li>
-    <a href="{% url 'products:index' %}"
-       class="{% if request.resolver_match.namespace == 'products' %}
-                active
-                {% endif %}">
-
-    </a>
-    <a href="{% url 'index' %}" class="logo"></a>
-    <ul class="menu">
-
-    </ul>
-    <a href="#" class="search"></a>
-
-{% endif %}
-    {% if user.is_superuser %}
-    <li>
-        <a href="{% url 'admins:users' %}">Админка</a>
-    </li>
-    {% endif %}
-    {% if user.is_authenticated %}
-<li> <a href="{% url 'auth:profile' %}">{{ user.user_name|default:'Пользователь' }}</a>
-            <div class="s_submenu">
-              <ul class="s_list_1 clearfix">
-                <li> <a href="{% url 'auth:profile' %}">Профиль</a></li>
-                <li><a href="{% url 'orders:list' %}">Заказы</a></li>
-              </ul>
+<div class="mainmenu-area">
+        <div class="container">
+            <div class="row">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'products:index' %}">Products</a></li>
+                        <li><a href="{% url 'contacts' %}">Contact</a></li>
+                    </ul>
+                </div>
             </div>
-</li>
-{% endif %}
-</ul>
-</div>
+        </div>
+</div> <!-- End mainmenu area -->
