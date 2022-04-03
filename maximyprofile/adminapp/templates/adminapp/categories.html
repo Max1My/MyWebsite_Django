@@ -40,6 +40,13 @@
 				        	</td>
 						    </tr>
 						  {% endfor %}
+						  <tr>
+							  <td>
+								  <a href="{% url 'adminapp:category_create' %}">
+                            <button class="btn btn-success">Add Category</button>
+                        			</a>
+							  </td>
+						  </tr>
 						  </tbody>
 						</table>
 					</div>
@@ -47,9 +54,5 @@
 			</div>
 		</div>
 </section>
-<div class="card-footer">
-                        <a href="{% url 'adminapp:category_create' %}">
-                            <button class="btn btn-success">Add Category</button>
-                        </a>
-                    </div>
+
 {% endblock %}

@@ -33,22 +33,28 @@
 						      <td>{{ user.email }}</td>
 				          <td>{{ user.is_stuff }}</td>
 						      <td>
-						      	<a href="{% url 'adminapp:users_delete' user.id %}">
-                                                                Delete
-                                                </a>
+						      	<a href="{% url 'adminapp:users_delete' user.id %}">Delete</a>
 				        	</td>
 						    </tr>
 						  {% endfor %}
+						  <tr>
+
+						  </tr>
+						  <tr>
+							  <td>
+							  <a href="{% url 'adminapp:user_create' %}">
+                            <button class="btn btn-success">Add User</button>
+                        </a>
+							  </td>
+						  </tr>
 						  </tbody>
+
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
+
 </section>
-<div class="card-footer">
-                        <a href="{% url 'adminapp:user_create' %}">
-                            <button class="btn btn-success">Add User</button>
-                        </a>
-                    </div>
+
 {% endblock %}

@@ -1,19 +1,17 @@
 {% extends 'adminapp/base.html' %}
 {% load static %}
 {% block content %}
-  <form id="create" class="clearfix" method="post" enctype="multipart/form-data">
+  <form id="create" class="profile" method="post" enctype="multipart/form-data">
     <h2 class="s_title_1"><span class="s_secondary_color">Пользователь</span> Редактирование</h2>
         <div class="clear"></div>
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="s_button_1 s_main_color_bgr" type="submit" value="сохранить"><span class="s_text">Сохранить</span></button>
-  </form>
-<br>
-  <button class="s_button_1 s_main_color_bgr" type="submit">
-    <span class="s_text">
-      <a href="{% url 'adminapp:users' %}">
-        к списку пользователей
-      </a>
+    <button class="s_button_1 s_main_color_bgr" type="submit" value="сохранить"><span class="s_text">Save</span></button>
+    <button style="background-color: #555555;" type="submit">
+    <span class="s_text"><a href="{% url 'adminapp:users' %}">Back</a>
     </span>
   </button>
+  </form>
+<br>
+
 {% endblock %}

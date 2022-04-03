@@ -3,7 +3,7 @@
 
 
 {% block content %}
-  <div class="product_delete">
+  <div class="profile">
     Уверены, что хотите удалить {{ object.name }}
     ?
     <form action="{% url 'admins:product_delete' product.id %}"

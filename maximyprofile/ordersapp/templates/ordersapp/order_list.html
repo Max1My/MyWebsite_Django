@@ -1,78 +1,66 @@
-{% extends 'mainapp/base.html' %}
+{% extends 'adminapp/base.html' %}
 {% load static %}
-
-
 {% block content %}
-<div id="intro">
-    <div id="intro_wrap">
-      <div class="container_12">
-        <div id="breadcrumbs" class="grid_12">
-          <a href="{% url 'index' %}">Главная</a>
-        </div>
-        <h1>
-            Ваши заказы,
-            {% if user.first_name %}
-                {{ user.first_name|title }}
-            {% else %}
-                Пользователь
-            {% endif %}
-        </h1>
-      </div>
-    </div>
-  </div>
-  <!-- end of intro -->
-
-<div id="content" class="container_12">
-    <div id="shopping_cart" class="grid_12">
-      <form id="cart" class="clearfix" action="checkout.html">
-        <table class="s_table_1" width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr>
-                <th width="65">ID</th>
-                <th width="60">Создан</th>
-                <th width="320">Обновлен</th>
-                <th width="320">Статус</th>
-            </tr>
-            {% for item in object_list %}
-                {% if item.is_active %}
-                    <tr class="even">
-                        <td valign="middle">{{ item.pk }}</td>
-                        <td valign="middle">{{ item.create|date:"Y-m-d H:i:s" }}</td>
-                        <td valign="middle">{{ item.update|date:"Y-m-d H:i:s" }}</td>
-                        <td valign="middle">{{ item.get_status_display }}</td>
-                        <td valign="middle">
-                            <a href="{% url 'orders:read' item.pk %}">
-                                посмотреть
-                            </a>
-                        </td>
-                        <td valign="middle">
-                            {% if item.status == 'FM' %}
-                                <a href="{% url 'orders:update' item.pk %}">
-                                    редактировать
+<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table">
+						  <thead class="thead-primary">
+						    <tr>
+						    	<th>ID</th>
+						    	<th>Created</th>
+						    	<th>Updated</th>
+						      <th>Status</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  {% for item in object_list %}
+                          {% if item.is_active %}
+						    <tr class="alert" role="alert">
+						      <td>{{ item.pk }}</td>
+						      <td>{{ item.create|date:"Y-m-d H:i:s" }}</td>
+						      <td>{{ item.update|date:"Y-m-d H:i:s" }}</td>
+						      <td>{{ item.get_status_display }}</td>
+				          <td><a href="{% url 'orders:read' item.pk %}">View</a></td>
+						      <td>
+						      	{% if item.status == 'FM' %}
+                                  <a href="{% url 'orders:update' item.pk %}">
+                                    Edit
                                 </a>
                             {% endif %}
-                        </td>
-                        <td valign="middle">
-                            {% if item.status == 'FM' %}
-                                <a href="{% url 'orders:delete' item.pk %}">
-                                    удалить
-                                </a>
+				        	</td>
+                                <td>
+                                {% if item.status == 'FM' %}
+                                <a href="{% url 'orders:delete' item.pk %}">Delete</a>
                             {% endif %}
-                        </td>
-                    </tr>
-                {% endif %}
-            {% endfor %}
-            </tbody>
-        </table>
-        <div class="clear"></div>
-        <br/>
-        <a href="{% url 'orders:create' %}" class="s_button_1 s_ddd_bgr left"><span class="s_text">Новый</span></a>
-    </form>
+                                </td>
+						    </tr>
+                          {% endif %}
+						  {% endfor %}
+						  <tr>
+						  </tr>
+						  <tr>
+							  <td>
+							  <a href="{% url 'orders:create' %}">
+                            <button class="btn btn-success">Create New</button>
+                        </a>
+							  </td>
+						  </tr>
+						  </tbody>
 
-    </div>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <div class="clear"></div>
-    <br />
-    <br />
+</section>
 
-  </div>
 {% endblock %}

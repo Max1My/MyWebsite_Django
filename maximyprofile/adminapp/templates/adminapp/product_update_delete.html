@@ -1,10 +1,10 @@
 {% extends 'adminapp/base.html' %}
 {% load static %}
 {% block content %}
-  <div id="content" class="container_16">
+  <div id="content" class="profile">
     <div class="grid_16">
-      <form id="create" class="clearfix" action="{% url 'adminapp:product_update' product.id %}" method="post" enctype="multipart/form-data">
-                  <h2 class="s_title_1"><span class="s_secondary_color">Редактирование продукта</span> {{ product.name }}</h2>
+      <form id="create" class="profile" action="{% url 'adminapp:product_update' product.id %}" method="post" enctype="multipart/form-data">
+                  <h2 class="s_title_1"><span class="s_secondary_color"></span> {{ product.name }}</h2>
                     <div class="clear"></div>
         <div class="s_row_2 clearfix">
                         {% csrf_token %}

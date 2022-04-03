@@ -1,69 +1,73 @@
 {% extends 'adminapp/base.html' %}
 {% load static %}
-
 {% block content %}
-<div id="content" class="container_12">
-
-    <div id="shopping_cart" class="grid_12">
-
-      <form id="cart" class="clearfix" action="#">
-        <table class="s_table_1" width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <th width="65">Фотография</th>
-            <th width="320">Наименование</th>
-            <th width="65">Цена</th>
-            <th width="65">Количество</th>
-            <th width="320">Краткое описание</th>
-            <th></th>
-            <th></th>
-          </tr>
-    {% for product in objects %}
-            <tr>
-      <td valign="middle"><a href="#"></a><img
+<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table">
+						  <thead class="thead-primary">
+						    <tr>
+						    	<th>Photo</th>
+						    	<th>Name</th>
+						    	<th>Price</th>
+						      <th>Quantity</th>
+						      <th>Short_desc</th>
+						      <th></th>
+						      <th>&nbsp;</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  {% for product in objects %}
+						    <tr class="alert" role="alert">
+                                <td>
+                                    <a href="#"></a><img
           src="/media/{{product.image|default:'products_images/default.jpg'}}"
-          alt="{{ product.name }}" width="60" height="60">
-      </td>
-      <td valign="middle"><a href="{% url 'adminapp:product_read' product.pk%}"><strong>
-          {{ product.name|title }}
-      </strong>
-      </a>
-      </td>
-      <td valign="middle">
-          <p>{{ product.price }} руб</p>
-      </td>
-      <td valign="middle">
-          <p>{{ product.quantity }}</p>
-      </td>
-      <td valign="middle">
-          {{ product.short_desc|title }}
-      </td>
-                <td valign="middle">
-<!--                    <button>-->
-<!--            <a href="{% url 'admins:product_read' product.id %}">-->
-<!--              подробнее-->
-<!--            </a>-->
-<!--          </button>-->
-          <button>
+          alt="{{ product.name }}" width="60" height="60"/>
+                                </td>
+						      <td>
+						      	<div class="email"><a href="{% url 'adminapp:product_read' product.pk%}">
+									<span>{{ product.name|title }}</span></a>
+						      	</div>
+						      </td>
+						      <td>{{ product.price }} rub</td>
+						      <td>{{ product.quantity }}</td>
+						      <td>{{ product.short_desc|title }}</td>
+				          <td><button>
             <a href="{% url 'adminapp:product_update' product.id %}">
-              редактировать
+              Edit
             </a>
-          </button>
-          <button>
+          </button></td>
+						      <td>
+						      	<button>
             <a href="{% url 'adminapp:product_delete' product.id %}">
-              удалить
+              Delete
             </a>
           </button>
-                </td>
-            </tr>
-    {% endfor%}
-        </table>
-      </form>
-        <div class="card-footer">
-                        <a href="{% url 'adminapp:product_create' %}">
-                            <button class="btn btn-success">Создать продукт</button>
+				        	</td>
+						    </tr>
+						  {% endfor %}
+						  <tr>
+
+						  </tr>
+						  <tr>
+							  <td>
+							  <a href="{% url 'adminapp:product_create' %}">
+                            <button class="btn btn-success">Add Product</button>
                         </a>
-        </div>
-  </div>
-      <div class="clear"></div>
-</div>
+							  </td>
+						  </tr>
+						  </tbody>
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+</section>
+
 {% endblock %}

@@ -231,7 +231,7 @@ def products(request, pk=None,page=1):
             category = get_object_or_404(ProductCategory,pk=pk)
             products = Product.objects.filter(category__pk=pk,is_active=True).order_by('price')
 
-        pagintor = Paginator(products, 2)
+        pagintor = Paginator(products, 4)
 
         try:
             products_paginator = pagintor.page(page)

@@ -1,11 +1,15 @@
-{% extends "mainapp/base.html" %}
+{% extends 'adminapp/base.html' %}
 {% load static %}
 {% load cache %}
-
 {% block content %}
-    {% include 'ordersapp/includes/inc_order_summary.html' %}
-    <div class="order_form">
-        <form action="" method="post">
+{% block script %}
+{% include 'ordersapp/includes/script.html' %}
+{% endblock %}
+{% block style %}
+{% include 'ordersapp/includes/style.html' %}
+{% endblock %}
+  <main>
+    <form action="" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <table class="table">
@@ -13,13 +17,13 @@
                 {% for form in orderitems.forms %}
                     {% if forloop.first %}
                         <thead>
-                        <tr>
+                        <ul>
                             {% for field in form.visible_fields %}
                                 <th class="{% cycle 'td1' 'td2' 'td3' %} order formset_td">
                                     {{ field.label|capfirst }}
                                 </th>
                             {% endfor %}
-                        </tr>
+                        </ul>
                         </thead>
                     {% endif %}
                     <tr class="formset_row">
@@ -55,8 +59,10 @@
             </table>
             <button type="submit" value="сохранить" class="btn btn-default btn-round form-control last">сохранить
             </button>
-            {% include 'ordersapp/includes/inc_order_actions.html' %}
         </form>
-    </div>
-
+      <aside>
+        {% include 'ordersapp/includes/inc_order_summary.html' %}
+        {% include 'ordersapp/includes/inc_order_actions.html' %}
+      </aside>
+  </main>
 {% endblock %}

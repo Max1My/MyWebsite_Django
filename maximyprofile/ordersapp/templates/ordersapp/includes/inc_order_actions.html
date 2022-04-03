@@ -1,18 +1,23 @@
+<style>
+    .a_checkout-cta{
+            background-color: #666;
+    color: #fff;
+    }
+</style>
 {% if object.status == 'FM' %}
-    <div class="container">
-        <div class="d-flex justify-content-around">
-            <button class="btn btn-warning btn-round form-control w-25 my-2 last">
-                <a href="{% url 'orders:forming_complete' object.pk %}">
-                    совершить покупку
-                </a>
-            </button>
-            <button class="btn btn-warning btn-round form-control w-25 my-2 last">
-                <a href="{% url 'orders:delete' object.pk %}">удалить</a>
-            </button>
+<div class="summary-checkout">
+          <button class="checkout-cta">
+              <a class="a_checkout-cta" href="{% url 'orders:forming_complete' object.pk %}">Buy</a>
+          </button>
         </div>
-    </div>
+<div class="summary-checkout">
+            <button class="checkout-cta">
+                <a class="a_checkout-cta" href="{% url 'orders:delete' object.pk %}">Delete</a>
+            </button>
+</div>
+
 {% endif %}
-<div class="container">
+<div class="summary-checkout">
 
     {% if object.status == 'STP' %}
 
@@ -30,12 +35,13 @@
         </form>
     {% endif %}
 
-    <button class="btn btn-info btn-round form-control my-2 last">
+    <button class="checkout-cta">
         <a href="{% url 'orders:list' %}">
-            к списку заказов
+            Orders
         </a>
     </button>
-    <button class="btn btn-light btn-round form-control  my-2 last">
-        <a href="{% url 'index' %}">на главную</a>
+    <button class="checkout-cta">
+        <a href="{% url 'index' %}">Main</a>
     </button>
+</div>
 </div>

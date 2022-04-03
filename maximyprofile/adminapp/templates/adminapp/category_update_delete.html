@@ -5,8 +5,8 @@
 
     <div id="layoutSidenav_content">
         <main>
-            <div class="container-fluid">
-                <h1 class="mt-4">Редактирование категории | {{ productcategory.name }}  </h1>
+            <div class="profile">
+                <h1 class="mt-4">Edit Category | {{ productcategory.name }}  </h1>
                 <div class="card-body">
                     <form action="{% url 'adminapp:category_update' productcategory.id %}" method="post">
 
