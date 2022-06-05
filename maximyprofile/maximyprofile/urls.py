@@ -38,6 +38,7 @@ urlpatterns = [
     path('orders/',include('ordersapp.urls',namespace='orders')),
     path('contacts/',mainapp.contacts,name='contacts'),
     path('sitemap/',mainapp.sitemap,name='sitemap'),
+    path('api/',include('api.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
